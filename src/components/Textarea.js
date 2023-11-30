@@ -1,84 +1,33 @@
-import { React, useState } from 'react';
+import React, { useRef } from 'react';
+import { Editor } from '@tinymce/tinymce-react';
 
-// Imports components.
-
-function Textarea() {
-
-    const [oneData, setOneData] = useState({ question: '', answer: '' })
-    const [data, setData] = useState([]);
-
-
-    const formSubmit = (e) => {
-        e.preventDefault();
-        const newFormData = { questions: oneData.question, answer: oneData.answer, id: new Date().getTime() };
-
-        setData((prevData) => {
-            return [...prevData, newFormData];
-        });
-        setOneData({ question: '', answer: '' })
+export default function App() {
+    const editorRef = useRef(null);
+    const log = () => {
+        if (editorRef.current) {
+            console.log(editorRef.current.getContent());
+        }
     };
-
-
-    const formChange = (e) => {
-        e.preventDefault()
-        const name = e.target.name
-        const value = e.target.value
-        setOneData({ ...oneData, [name]: value })
-    }
-
-
     return (
-        <div>
-            <form style={styles.container}>
-                <input
-                    type='text'
-                    name='question'
-                    onChange={formChange}
-                    value={oneData.question}
-                    placeholder='Name'
-                ></input>
-                <textarea
-                    name='answer'
-                    onChange={formChange}
-                    value={oneData.answer}
-                    rows="25" cols="100"
-                ></textarea>
-                <input
-                    onClick={formSubmit}
-                    style={styles.button}
-                    type='submit'
-                    value='submit'
-                ></input>
-            </form>
-
-            {data.map((oneDatafromArray, index) => {
-                const { questions, answer } = oneDatafromArray
-
-                return (
-                    <div key={index}>
-                        <h3>{questions}</h3>
-                        <p style={styles.answer}>{answer}</p>
-                    </div>
-                );
-            })}
-
-        </div>
+        <>
+            <Editor
+                apiKey='ov19oabyq813xxlmgyhlhoqpx18jqzdrd5eq7pxyg0wxsvkt'
+                onInit={(evt, editor) => editorRef.current = editor}
+                initialValue='hi'
+                init={{
+                    height: 500,
+                    menubar: false,
+                    plugins: [
+                        'export','advlist','Preview' , 'lists','pagebreak',
+                        'anchor','searchreplace', 'visualblocks', 'code', 'fullscreen','table'
+                    ],
+                    toolbar: 'Preview pagebreak undo redo' +
+                        'bold italic forecolor backcolor fontsize|  alignleft aligncenter ' +
+                        'alignright alignjustify table export',
+                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                }}
+            />
+            <button onClick={log}>Log editor content</button>
+        </>
     );
 }
-
-const styles = {
-    container: {
-        maxWidth: '1200px',
-        height: "400px",
-        margin: '0 auto',
-        background: '#f5efe9'
-    },
-    button: {
-        color: 'red',
-    },
-    answer: {
-        whiteSpace: 'pre',
-    }
-};
-
-export default Textarea;
