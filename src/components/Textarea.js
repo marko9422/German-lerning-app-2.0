@@ -1,9 +1,19 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState,useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
 export default function Textarea() {
 
     const [textarea , setTextarea] = useState('')
+
+    useEffect(() => {
+        saveDadaIntoDatabase()
+    })
+
+    const saveDadaIntoDatabase = () => {
+        // e.preventDefault()
+        const newData = {textarea: textarea}
+        console.log(newData)
+    }
 
     const editorRef = useRef(null);
     const log = () => {
