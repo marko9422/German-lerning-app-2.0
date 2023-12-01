@@ -3,7 +3,8 @@ import { React} from 'react';
 
 // Imports components.
 import Textarea from './components/Textarea';
-import FetchDataFromFirebase from './components/FetchDataFromFirebase'
+// import FetchDataFromFirebase from './components/FetchDataFromFirebase'
+
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
   return (
     <div>
       <Textarea></Textarea>
-      <FetchDataFromFirebase></FetchDataFromFirebase>
+      {/* <FetchDataFromFirebase></FetchDataFromFirebase> */}
 
     </div>
       );

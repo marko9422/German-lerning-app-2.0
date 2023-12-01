@@ -1,19 +1,20 @@
 import React, { useRef, useState,useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
+import SaveIntoFirestore from './SaveIntoFirestore';
+
+
 export default function Textarea() {
 
     const [textarea , setTextarea] = useState('')
 
     useEffect(() => {
+        const saveDadaIntoDatabase = () => {
+            const newData = {textarea: textarea} 
+            // console.log(textarea)          
+        }
         saveDadaIntoDatabase()
     })
-
-    const saveDadaIntoDatabase = () => {
-        // e.preventDefault()
-        const newData = {textarea: textarea}
-        // console.log(newData)
-    }
 
     const editorRef = useRef(null);
     const log = () => {
@@ -43,6 +44,8 @@ export default function Textarea() {
                 }}
             />
             <button onClick={log}>Log editor content</button>
+
+            <SaveIntoFirestore textarea={textarea}></SaveIntoFirestore>
         </div>
     );
 }
