@@ -12,7 +12,7 @@ export default function Textarea() {
     const saveDadaIntoDatabase = () => {
         // e.preventDefault()
         const newData = {textarea: textarea}
-        console.log(newData)
+        // console.log(newData)
     }
 
     const editorRef = useRef(null);
