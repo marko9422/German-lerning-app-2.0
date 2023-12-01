@@ -1,17 +1,19 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
-export default function App() {
+export default function Textarea() {
+
+    const [textarea , setTextarea] = useState('')
 
     const editorRef = useRef(null);
     const log = () => {
         if (editorRef.current) {
-            console.log(editorRef.current.getContent());
+            setTextarea(editorRef.current.getContent());
         }
     };
     
     return (
-        <div className={styles.editor}>
+        <div>
             <Editor
                 apiKey='ov19oabyq813xxlmgyhlhoqpx18jqzdrd5eq7pxyg0wxsvkt'
                 onInit={(evt, editor) => editorRef.current = editor}
@@ -27,16 +29,10 @@ export default function App() {
                     toolbar: 'preview pagebreak undo redo' +
                         'italic bold  forecolor backcolor fontsize|  alignleft aligncenter ' +
                         'alignright alignjustify table export lineheight',
-                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px; line-heigth:20px; }'
+                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px; }',
                 }}
             />
             <button onClick={log}>Log editor content</button>
         </div>
     );
 }
-
-const styles = {
-    editor: {
-        width: '800px', 
-    }
-};
