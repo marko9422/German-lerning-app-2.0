@@ -19,8 +19,9 @@ export default function Textarea({initialValue}) {
     const editorRef = useRef(null);
 
     return (
-        <div style={{maxWidth:'1200px'}} className='container'>
-            <Editor
+        <div className='container'>
+            <p>test router textarea</p>
+            {/* <Editor
                 initialValue={initialValue}
                 value={textarea}
                 onEditorChange={(newValue, editor) => setTextarea(newValue)}
@@ -39,7 +40,7 @@ export default function Textarea({initialValue}) {
                         'alignright alignjustify table export lineheight',
                     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:12pt; }',
                 }}
-            />
+            /> */}
             <button onClick={saveIntoFirestore}>huhuhuhu</button>
 
             <div

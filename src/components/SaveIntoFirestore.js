@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react';
+import { React} from 'react';
 import { db } from '../firebase/config'
 // Imports components.
 import { collection, addDoc } from 'firebase/firestore';
@@ -12,9 +12,7 @@ function SaveIntoFirestore(props) {
     }
 
     return (
-        <div>
-            {/* {props.textarea} */}
-
+        <div className='container'>
             <button onClick={saveIntoFirestore}>ADD</button>
         </div>
 

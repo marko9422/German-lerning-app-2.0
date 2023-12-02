@@ -8,18 +8,18 @@ function FetchDataFromFirebase() {
     const [data, setData] = useState([])
 
     const userCollectionRef = collection(db, 'textarea')
-    useEffect(() => {
-        const fetchDataFromFirestore = async () => {
-            const data = await getDocs(userCollectionRef);
-            setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        }
+    // useEffect(() => {
+    //     const fetchDataFromFirestore = async () => {
+    //         const data = await getDocs(userCollectionRef);
+    //         setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    //     }
 
-        fetchDataFromFirestore()
-    }, [])
+    //     fetchDataFromFirestore()
+    // }, [])
 
     return (
-        <div>
-
+        <div className='container'>
+            <p>test router FetchDataFromFirebase</p>
             {data.map(({ id, answer }) => (
                 <div key={id}>
                     <p>{id}</p>
