@@ -19,7 +19,7 @@ export default function Textarea({initialValue}) {
     const editorRef = useRef(null);
 
     return (
-        <div>
+        <div style={{maxWidth:'1200px'}} className='container'>
             <Editor
                 initialValue={initialValue}
                 value={textarea}
@@ -37,12 +37,18 @@ export default function Textarea({initialValue}) {
                     toolbar: 'preview pagebreak undo redo' +
                         'italic bold  forecolor backcolor fontsize|  alignleft aligncenter ' +
                         'alignright alignjustify table export lineheight',
-                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px; }',
+                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:12pt; }',
                 }}
             />
             <button onClick={saveIntoFirestore}>huhuhuhu</button>
 
-            <pre>{textarea}</pre>
+            <div
+                style={{
+                    fontFamily: 'Helvetica, Arial, sans-serif',
+                    fontSize: '12pt'
+                }}
+                dangerouslySetInnerHTML={{ __html: textarea }}
+            />
 
 
         </div>
