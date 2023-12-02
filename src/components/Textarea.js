@@ -1,34 +1,31 @@
 import React, { useRef, useState,useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
-import SaveIntoFirestore from './SaveIntoFirestore';
+import { db } from '../firebase/config'
+// Imports components.
+import { collection, addDoc } from 'firebase/firestore';
 
+export default function Textarea({initialValue}) {
 
-export default function Textarea() {
-
-    const [textarea , setTextarea] = useState('')
-
-    useEffect(() => {
-        const saveDadaIntoDatabase = () => {
-            const newData = {textarea: textarea} 
-            // console.log(textarea)          
-        }
-        saveDadaIntoDatabase()
-    })
-
-    const editorRef = useRef(null);
-    const log = () => {
-        if (editorRef.current) {
-            setTextarea(editorRef.current.getContent());
-        }
-    };
+    const [textarea , setTextarea] = useState(initialValue ?? '');
     
+    const saveIntoFirestore = async () => {
+        await addDoc(userCollectionRef,{asnwer: textarea});
+    }
+    
+    // tinyMCE Editor things.
+    useEffect(() => setTextarea(initialValue ?? ''), [initialValue]);
+    const userCollectionRef = collection(db, 'textarea')
+    const editorRef = useRef(null);
+
     return (
         <div>
             <Editor
+                initialValue={initialValue}
+                value={textarea}
+                onEditorChange={(newValue, editor) => setTextarea(newValue)}
                 apiKey='ov19oabyq813xxlmgyhlhoqpx18jqzdrd5eq7pxyg0wxsvkt'
                 onInit={(evt, editor) => editorRef.current = editor}
-                initialValue='hi'
                 init={{
                     height: 500,
                     menubar: false,
@@ -43,9 +40,11 @@ export default function Textarea() {
                     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px; }',
                 }}
             />
-            <button onClick={log}>Log editor content</button>
+            <button onClick={saveIntoFirestore}>huhuhuhu</button>
 
-            <SaveIntoFirestore textarea={textarea}></SaveIntoFirestore>
+            <pre>{textarea}</pre>
+
+
         </div>
     );
 }
