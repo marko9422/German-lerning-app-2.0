@@ -21,7 +21,7 @@ function App() {
       <BrowserRouter>
         <Navbar expand="lg" className="bg-body-tertiary">
           <Container >
-            <Navbar.Brand as={Link} to='/Home'>home</Navbar.Brand>
+            <Navbar.Brand as={Link} to='/'>home</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav
