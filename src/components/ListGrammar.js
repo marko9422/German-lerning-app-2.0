@@ -15,6 +15,7 @@ export default function ListGrammar() {
         }
 
         // fetchDataFromFirestore()
+        
     }, [])
 
     return (
