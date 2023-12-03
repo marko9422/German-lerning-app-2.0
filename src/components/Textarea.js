@@ -10,7 +10,7 @@ export default function Textarea({initialValue}) {
     const [textarea , setTextarea] = useState(initialValue ?? '');
     
     const saveIntoFirestore = async () => {
-        await addDoc(userCollectionRef,{asnwer: textarea});
+        await addDoc(userCollectionRef,{answer: textarea});
     }
     
     // tinyMCE Editor things.

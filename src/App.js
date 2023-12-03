@@ -11,6 +11,7 @@ import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 import Home from './components/Home';
 import Textarea from './components/Textarea';
 import FetchDataFromFirebase from './components/FetchDataFromFirebase'
+import ListGrammar from './components/ListGrammar';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
               >
                 <Nav.Link  as={Link} to='/Textarea'>textarea</Nav.Link>
                 <Nav.Link  as={Link} to='/FetchDataFromFirebase'>FetchDataFromFirebase</Nav.Link>
+                <Nav.Link  as={Link} to='/ListGrammar'>ListGrammar</Nav.Link>
               </Nav>
 
             </Navbar.Collapse>
@@ -41,6 +43,7 @@ function App() {
         <Route path='/' element={< Home/>} />
         <Route path='/Textarea' element={< Textarea/>} />
         <Route path='/FetchDataFromFirebase' element={< FetchDataFromFirebase/>} />
+        <Route path='/ListGrammar' element={< ListGrammar/>} />
     </Routes>
       </BrowserRouter>
     </>
