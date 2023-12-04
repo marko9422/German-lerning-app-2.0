@@ -14,7 +14,10 @@ export default function EditGrammar( props ) {
         const updateTextarea = {answer: textarea}
         await updateDoc(textareaDoc, updateTextarea);
         setTextarea('')
+        props?.callback(false)
     }
+
+    
     
     // tinyMCE Editor things.
     const userCollectionRef = collection(db, 'textarea')

@@ -7,9 +7,15 @@ export default function ListGrammar() {
 
     const { loading, grammar } = useFetchGrammar()
     const [edit,setEdit] = useState('')
+    const [editBoolean,setBoolean] = useState(false)
 
     const editGrammar = (id) => {
         setEdit(id)
+        setBoolean(true)
+    }
+
+    const callback = (value) => {
+        setBoolean(value)
     }
 
     return (
@@ -18,14 +24,12 @@ export default function ListGrammar() {
                 : 
                 grammar.map(({ id, answer }) => (
                     
-                    edit == id ? <div>
-                                    <p>edit:   {edit}id:   {id}</p> 
-                                    <EditGrammar initialValue={answer} id={id}></EditGrammar>
+                    edit == id && editBoolean == true ? <div>
+                                    <EditGrammar {...{callback}} initialValue={answer} id={id}></EditGrammar>
                                 </div>
                     :
                     
                     <div style={styles.grammarContainer} className='testStyle' key={id}>
-                        <p>edit:   {edit}id:   {id}</p> 
                         <div
                             style={{
                                 fontFamily: 'Helvetica, Arial, sans-serif',
