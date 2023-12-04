@@ -11,6 +11,7 @@ export default function Textarea({ initialValue }) {
 
     const saveIntoFirestore = async () => {
         await addDoc(userCollectionRef, { answer: textarea });
+        setTextarea('')
     }
 
     // tinyMCE Editor things.
