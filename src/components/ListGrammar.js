@@ -1,38 +1,38 @@
-import { React, useEffect, useState } from 'react';
-import { db } from '../firebase/config'
-// Imports components.
-import { collection, getDocs } from 'firebase/firestore';
+import { React } from 'react';
+
+import useFetchGrammar from '../hooks/useFetchGrammar';
 
 export default function ListGrammar() {
 
-    const [data, setData] = useState([])
-
-    const userCollectionRef = collection(db, 'textarea')
-    useEffect(() => {
-        const fetchDataFromFirestore = async () => {
-            const data = await getDocs(userCollectionRef);
-            setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        }
-
-        // fetchDataFromFirestore()
-        
-    }, [])
+    const { loading, grammar } = useFetchGrammar()
 
     return (
         <div className='container'>
-            {data.map(({ id, answer }) => (
-                <div className='testStyle' key={id}>
-                    <div
-                        style={{
-                            fontFamily: 'Helvetica, Arial, sans-serif',
-                            fontSize: '12pt'
-                        }}
-                        dangerouslySetInnerHTML={{ __html: answer }}
-                    />
-                </div>
-            ))}
+            <div>{loading ? 'loading...' : 'grammar'}
+                {grammar.map(({ id, answer }) => (
+                    <div style={styles.grammarContainer} className='testStyle' key={id}>
+                        <div
+                            style={{
+                                fontFamily: 'Helvetica, Arial, sans-serif',
+                                fontSize: '12pt'
+                            }}
+                            dangerouslySetInnerHTML={{ __html: answer }}
+                        />
+                    </div>
+                ))}
+            </div>
 
-        {/* {console.log(data.asnwer)} */}
+
+            {/* {console.log(data.asnwer)} */}
         </div>
     )
+
+
 }
+
+const styles = {
+    grammarContainer: {
+        border: '2px solid black',
+        margin: '10px',
+    }
+};
