@@ -1,18 +1,18 @@
-import React, { useRef, useState,useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
 import { db } from '../firebase/config'
 // Imports components.
 import { collection, addDoc } from 'firebase/firestore';
 
-export default function Textarea({initialValue}) {
+export default function Textarea({ initialValue }) {
 
-    const [textarea , setTextarea] = useState(initialValue ?? '');
-    
+    const [textarea, setTextarea] = useState(initialValue ?? '');
+
     const saveIntoFirestore = async () => {
-        await addDoc(userCollectionRef,{answer: textarea});
+        await addDoc(userCollectionRef, { answer: textarea });
     }
-    
+
     // tinyMCE Editor things.
     useEffect(() => setTextarea(initialValue ?? ''), [initialValue]);
     const userCollectionRef = collection(db, 'textarea')
@@ -32,8 +32,8 @@ export default function Textarea({initialValue}) {
                     menubar: false,
                     line_height_formats: '0.5 1 1.2 1.4 1.6 2 5',
                     plugins: [
-                        'export','advlist','preview' , 'lists','pagebreak',
-                        'anchor','searchreplace', 'visualblocks', 'code', 'fullscreen','table'
+                        'export', 'advlist', 'preview', 'lists', 'pagebreak',
+                        'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen', 'table'
                     ],
                     toolbar: 'preview pagebreak undo redo' +
                         'italic bold  forecolor backcolor fontsize|  alignleft aligncenter ' +

@@ -11,6 +11,7 @@ import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 import Home from './components/Home';
 import Textarea from './components/Textarea';
 import ListGrammar from './components/ListGrammar';
+import AddNewWord from './components/AddNewWord';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
               >
                 <Nav.Link  as={Link} to='/Textarea'>textarea</Nav.Link>
                 <Nav.Link  as={Link} to='/ListGrammar'>List Grammar</Nav.Link>
+                <Nav.Link  as={Link} to='/AddNewWord'>Add NewWord </Nav.Link>
               </Nav>
 
             </Navbar.Collapse>
@@ -41,6 +43,7 @@ function App() {
         <Route path='/' element={< Home/>} />
         <Route path='/Textarea' element={< Textarea/>} />
         <Route path='/ListGrammar' element={< ListGrammar/>} />
+        <Route path='/AddNewWord' element={< AddNewWord/>} />
     </Routes>
       </BrowserRouter>
     </>
