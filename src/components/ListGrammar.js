@@ -14,6 +14,7 @@ export default function ListGrammar() {
         setBoolean(true)
     }
 
+// This function is helping to sent false from EditGrammar in this parent component.
     const callback = (value) => {
         setBoolean(value)
     }
