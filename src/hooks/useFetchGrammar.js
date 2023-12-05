@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { db } from '../firebase/config'
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, onSnapshot } from 'firebase/firestore';
 
 function useFetchGrammar() {
 
@@ -8,15 +8,17 @@ function useFetchGrammar() {
     const [grammar, setGrammar] = useState([])
 
     const userCollectionRef = collection(db, 'textarea')
-    useEffect(() => {
-        const fetchGrammarFromFirestore = async () => {
-            const grammar = await getDocs(userCollectionRef);
-            setGrammar(grammar.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-            setLoading(false)
-        }
 
-        fetchGrammarFromFirestore()
-    }, [])
+    useEffect(() => {
+        const fetchGrammarFromFirestore = onSnapshot(userCollectionRef, (snapshot) => {
+            setGrammar(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+            setLoading(false);
+        });
+    
+        // The returned function will be called when the component unmounts
+        return () => fetchGrammarFromFirestore();
+    }, []);
+
 
     return ( { loading , grammar});
 }
