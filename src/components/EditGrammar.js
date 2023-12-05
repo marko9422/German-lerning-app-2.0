@@ -3,27 +3,32 @@ import { Editor } from '@tinymce/tinymce-react';
 
 import { db } from '../firebase/config'
 // Imports components.
-import { collection, addDoc } from 'firebase/firestore';
+import { collection,updateDoc,doc } from 'firebase/firestore';
 
-export default function Textarea({ initialValue }) {
+export default function EditGrammar( props ) {
 
-    const [textarea, setTextarea] = useState(initialValue ?? '');
-
-    const saveIntoFirestore = async () => {
-        await addDoc(userCollectionRef, { answer: textarea });
+    const [textarea, setTextarea] = useState(props.initialValue ?? '');
+    
+    const EditIntoFirestore = async (id, textarea) => {
+        const textareaDoc = doc(db,'textarea' , id)
+        const updateTextarea = {answer: textarea}
+        await updateDoc(textareaDoc, updateTextarea);
         setTextarea('')
+        props?.callback(false)
     }
 
+    
+    
     // tinyMCE Editor things.
-    useEffect(() => setTextarea(initialValue ?? ''), [initialValue]);
     const userCollectionRef = collection(db, 'textarea')
+    useEffect(() => setTextarea(props.initialValue ?? ''), [props.initialValue]);
     const editorRef = useRef(null);
 
     return (
         <div className='container'>
             <p>test router textarea</p>
             <Editor
-                initialValue={initialValue}
+                initialValue={props.initialValue}
                 value={textarea}
                 onEditorChange={(newValue, editor) => setTextarea(newValue)}
                 apiKey='ov19oabyq813xxlmgyhlhoqpx18jqzdrd5eq7pxyg0wxsvkt'
@@ -42,7 +47,7 @@ export default function Textarea({ initialValue }) {
                     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:12pt; }',
                 }}
             />
-            <button onClick={saveIntoFirestore}>huhuhuhu</button>
+            <button onClick={() => EditIntoFirestore(props.id,textarea)}>update</button>
 
             <div
                 style={{

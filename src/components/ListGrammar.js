@@ -1,15 +1,35 @@
-import { React } from 'react';
+import { React,useState } from 'react';
 
 import useFetchGrammar from '../hooks/useFetchGrammar';
+import EditGrammar from './EditGrammar';
 
 export default function ListGrammar() {
 
     const { loading, grammar } = useFetchGrammar()
+    const [edit,setEdit] = useState('')
+    const [editBoolean,setBoolean] = useState(false)
+
+    const editGrammar = (id) => {
+        setEdit(id)
+        setBoolean(true)
+    }
+
+// This function is helping to sent false from EditGrammar in this parent component.
+    const callback = (value) => {
+        setBoolean(value)
+    }
 
     return (
         <div className='container'>
-            <div>{loading ? 'loading...' : 'grammar'}
-                {grammar.map(({ id, answer }) => (
+            <div>{loading ? 'loading...' 
+                : 
+                grammar.map(({ id, answer }) => (
+                    
+                    edit == id && editBoolean == true ? <div>
+                                    <EditGrammar {...{callback}} initialValue={answer} id={id}></EditGrammar>
+                                </div>
+                    :
+                    
                     <div style={styles.grammarContainer} className='testStyle' key={id}>
                         <div
                             style={{
@@ -18,12 +38,13 @@ export default function ListGrammar() {
                             }}
                             dangerouslySetInnerHTML={{ __html: answer }}
                         />
+                        <button onClick={() => editGrammar(id)}>EDIT</button>
                     </div>
-                ))}
+                ))
+                }
+                
             </div>
 
-
-            {/* {console.log(data.asnwer)} */}
         </div>
     )
 
