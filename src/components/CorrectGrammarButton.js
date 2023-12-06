@@ -18,10 +18,17 @@ export default function CorrectGrammarButton(props) {
         await updateDoc(textareaDoc, updateTextarea);
     }
 
+    const doNotShowAgain = async () => {
+        const textareaDoc = doc(db, 'textarea', props.id)
+        const updateTextarea = { visible: false }
+        await updateDoc(textareaDoc, updateTextarea);
+    }
+
     return (
         <>
             <button onClick={() => wrong()}>wrong</button>
             <button onClick={() => correct()}>correct</button>
+            <button onClick={() => doNotShowAgain()}>Do not show again.</button>
         </>
     )
 }
