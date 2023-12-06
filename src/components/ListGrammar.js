@@ -2,6 +2,7 @@ import { React,useState } from 'react';
 
 import useFetchGrammar from '../hooks/useFetchGrammar';
 import EditGrammar from './EditGrammar';
+import CorrectGrammarButton from './CorrectGrammarButton';
 
 export default function ListGrammar() {
 
@@ -23,13 +24,13 @@ export default function ListGrammar() {
         <div className='container'>
             <div>{loading ? 'loading...' 
                 : 
-                grammar.map(({ id, answer }) => (
+                grammar.map(({ id, answer,score }) => (
                     
                     edit == id && editBoolean == true ? <div>
                                     <EditGrammar {...{callback}} initialValue={answer} id={id}></EditGrammar>
                                 </div>
                     :
-                    
+                    <>
                     <div style={styles.grammarContainer} className='testStyle' key={id}>
                         <div
                             style={{
@@ -38,8 +39,11 @@ export default function ListGrammar() {
                             }}
                             dangerouslySetInnerHTML={{ __html: answer }}
                         />
-                        <button onClick={() => editGrammar(id)}>EDIT</button>
                     </div>
+                    <p>{score}</p>
+                    <button onClick={() => editGrammar(id)}>EDIT</button>
+                    <CorrectGrammarButton id={id} score={score}/>
+                    </>
                 ))
                 }
                 
