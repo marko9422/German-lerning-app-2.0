@@ -12,7 +12,7 @@ export default function Textarea({ initialValue }) {
 
     const saveIntoFirestore = async () => {
         setLoadingAfterPost(false)
-        await addDoc(userCollectionRef, { answer: textarea });
+        await addDoc(userCollectionRef, { answer: textarea, score:10000 });
         setTextarea('')
         setLoadingAfterPost(true)
 
@@ -47,7 +47,7 @@ export default function Textarea({ initialValue }) {
                             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:12pt; }',
                         }}
                     />
-                    <button onClick={saveIntoFirestore}>huhuhuhu</button>
+                    <button onClick={saveIntoFirestore}>save</button>
                 </>
                 :
                 <div>loading...</div>
