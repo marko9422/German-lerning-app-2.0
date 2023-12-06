@@ -26,7 +26,6 @@ export default function EditGrammar( props ) {
 
     return (
         <div className='container'>
-            <p>test router textarea</p>
             <Editor
                 initialValue={props.initialValue}
                 value={textarea}
