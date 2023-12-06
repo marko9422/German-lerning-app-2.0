@@ -20,7 +20,7 @@ function useFetchGrammar() {
     }, []);
 
 
-    return ( { loading , grammar});
+    return (  [loading , grammar]);
 }
 
 export default useFetchGrammar;
