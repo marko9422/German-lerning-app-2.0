@@ -15,7 +15,7 @@ export default function Textarea({ initialValue }) {
         await addDoc(userCollectionRef, { answer: textarea });
         setTextarea('')
         setLoadingAfterPost(true)
-        
+
     }
 
     // tinyMCE Editor things.
@@ -52,7 +52,7 @@ export default function Textarea({ initialValue }) {
                 :
                 <div>loading...</div>
             }
-    
+
             <div
                 style={{
                     fontFamily: 'Helvetica, Arial, sans-serif',
@@ -62,5 +62,5 @@ export default function Textarea({ initialValue }) {
             ></div>
         </div>
     );
-    
+
 }
