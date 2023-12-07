@@ -3,6 +3,7 @@ import { React, useState, useEffect } from 'react';
 import useFetchGrammar from '../hooks/useFetchGrammar';
 import EditGrammar from './EditGrammar';
 import CorrectGrammarButton from './CorrectGrammarButton';
+// import ShowGrammar from './ShowGrammar';
 
 export default function ListGrammar() {
 
@@ -26,7 +27,13 @@ export default function ListGrammar() {
     }
 
     useEffect(() => {
-        setRandomlengthOfGrammar(Math.floor(Math.random() * grammar.length))
+        if(typeof currentlyEditing === 'number'){
+            setRandomlengthOfGrammar(currentlyEditing)
+            console.log(currentlyEditing,randomlengthOfGrammar)
+        } else{
+            setRandomlengthOfGrammar(Math.floor(Math.random() * grammar.length))
+            console.log(currentlyEditing,randomlengthOfGrammar)
+        }   
     }, [grammar])
 
     return (
@@ -40,26 +47,29 @@ export default function ListGrammar() {
                                 <EditGrammar {...{ callback }} initialValue={answer} id={id}></EditGrammar>
                             </div>
                         ) : (
-                            (typeof currentlyEditing === 'number' && index === currentlyEditing) ? (
+                            (index === randomlengthOfGrammar) ? (
                                 <div key={id}>
-                                    <p>{randomlengthOfGrammar}</p>
-                                    <p>{currentlyEditing}</p>
-                                    <p>{index}</p>
-                                    <div style={styles.grammarContainer} className='testStyle'>
-                                        <div
-                                            style={{
-                                                fontFamily: 'Helvetica, Arial, sans-serif',
-                                                fontSize: '12pt'
-                                            }}
-                                            dangerouslySetInnerHTML={{ __html: answer }}
-                                        />
-                                    </div>
-                                    <p>{score}</p>
-                                    <button onClick={() => editGrammar(id)}>EDIT</button>
-                                    <CorrectGrammarButton id={id} score={score} />
+                                <p>FIRST ROW</p>    
+                                <p>{randomlengthOfGrammar}</p>
+                                <p>{+currentlyEditing}</p>
+                                <p>{index}</p>
+                                <div style={styles.grammarContainer} className='testStyle'>
+                                    <div
+                                        style={{
+                                            fontFamily: 'Helvetica, Arial, sans-serif',
+                                            fontSize: '12pt'
+                                        }}
+                                        dangerouslySetInnerHTML={{ __html: answer }}
+                                    />
                                 </div>
-                            ) : index === randomlengthOfGrammar ? (
+                                <p>{score}</p>
+                                <button onClick={() => editGrammar(id)}>EDIT</button>
+                                <CorrectGrammarButton id={id} score={score} />
+                            </div>
+                            ) : (typeof currentlyEditing === 'number' && index === currentlyEditing) ? (
+                                
                                 <div key={id}>
+                                    <p>SECOND ROW</p>   
                                     <p>{randomlengthOfGrammar}</p>
                                     <p>{+currentlyEditing}</p>
                                     <p>{index}</p>
