@@ -12,7 +12,7 @@ export default function Textarea({ initialValue }) {
 
     const saveIntoFirestore = async () => {
         setLoadingAfterPost(false)
-        await addDoc(userCollectionRef, { answer: textarea, score:10000 });
+        await addDoc(userCollectionRef, { answer: textarea, score:10000,visible:true });
         setTextarea('')
         setLoadingAfterPost(true)
 
