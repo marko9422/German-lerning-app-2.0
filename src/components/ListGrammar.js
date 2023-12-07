@@ -3,7 +3,7 @@ import { React, useState, useEffect } from 'react';
 import useFetchGrammar from '../hooks/useFetchGrammar';
 import EditGrammar from './EditGrammar';
 import CorrectGrammarButton from './CorrectGrammarButton';
-// import ShowGrammar from './ShowGrammar';
+import ShowGrammar from './ShowGrammar';
 
 export default function ListGrammar() {
 
@@ -48,30 +48,14 @@ export default function ListGrammar() {
                         ) : (
                             (index === randomlengthOfGrammar) ? (
                                 <div key={id}>
-                                    <div style={styles.grammarContainer} className='testStyle'>
-                                        <div
-                                            style={{
-                                                fontFamily: 'Helvetica, Arial, sans-serif',
-                                                fontSize: '12pt'
-                                            }}
-                                            dangerouslySetInnerHTML={{ __html: answer }}
-                                        />
-                                    </div>
+                                    <ShowGrammar answer={answer}></ShowGrammar>
                                     <button onClick={() => editGrammar(id)}>EDIT</button>
                                     <CorrectGrammarButton id={id} score={score} />
                                 </div>
                             ) : (typeof currentlyEditing === 'number' && index === currentlyEditing) ? (
                                 
                                 <div key={id}>
-                                    <div style={styles.grammarContainer} className='testStyle'>
-                                        <div
-                                            style={{
-                                                fontFamily: 'Helvetica, Arial, sans-serif',
-                                                fontSize: '12pt'
-                                            }}
-                                            dangerouslySetInnerHTML={{ __html: answer }}
-                                        />
-                                    </div>
+                                    <ShowGrammar answer={answer}></ShowGrammar>
                                     <button onClick={() => editGrammar(id)}>EDIT</button>
                                     <CorrectGrammarButton id={id} score={score} />
                                 </div>
@@ -88,9 +72,9 @@ export default function ListGrammar() {
 
 }
 
-const styles = {
-    grammarContainer: {
-        border: '2px solid black',
-        margin: '10px',
-    }
-};
+// const styles = {
+//     grammarContainer: {
+//         border: '2px solid black',
+//         margin: '10px',
+//     }
+// };
