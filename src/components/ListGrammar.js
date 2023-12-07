@@ -8,21 +8,26 @@ export default function ListGrammar() {
 
     const [loading, grammar] = useFetchGrammar()
     const [edit, setEdit] = useState('')
-    const [editBoolean, setBoolean] = useState(false)
-    const [randomNumberFromGrammar, setRandomNumberFromGrammar] = useState(0)
+    const [openEditorToEditCurrentGrammar, setEditorToeditCurrentGrammar] = useState(false)
 
+    const [randomlengthOfGrammar, setRandomlengthOfGrammar] = useState(null)
+    const [currentlyEditing, setCurrentlyEditing] = useState(null)
 
 
     const editGrammar = (id) => {
         setEdit(id)
-        setBoolean(true)
+        setEditorToeditCurrentGrammar(true)
+        setCurrentlyEditing(randomlengthOfGrammar)
     }
-
 
     // This function is helping to sent false from EditGrammar in this parent component.
     const callback = (value) => {
-        setBoolean(value)
+        setEditorToeditCurrentGrammar(value)
     }
+
+    useEffect(() => {
+        setRandomlengthOfGrammar(Math.floor(Math.random() * grammar.length))
+    }, [grammar])
 
     return (
         <div className='container'>
@@ -30,36 +35,55 @@ export default function ListGrammar() {
                 {loading
                     ? 'loading...'
                     : grammar.map(({ id, answer, score }, index) => (
-                        (edit === id && editBoolean === true)
-                            ? (
+                        edit === id && openEditorToEditCurrentGrammar === true ? (
+                            <div key={id}>
+                                <EditGrammar {...{ callback }} initialValue={answer} id={id}></EditGrammar>
+                            </div>
+                        ) : (
+                            (typeof currentlyEditing === 'number' && index === currentlyEditing) ? (
                                 <div key={id}>
-                                    <EditGrammar {...{ callback }} initialValue={answer} id={id}></EditGrammar>
-                                </div>
-                            )
-                            : (grammar.length >= 0 && index === randomNumberFromGrammar)
-                                ? (
-                                    <div key={id}>
-                                        <p>{grammar.length}</p>
-                                        <div style={styles.grammarContainer} className='testStyle' >
-                                            <div
-                                                style={{
-                                                    fontFamily: 'Helvetica, Arial, sans-serif',
-                                                    fontSize: '12pt'
-                                                }}
-                                                dangerouslySetInnerHTML={{ __html: answer }}
-                                            />
-                                        </div>
-                                        <p>{score}</p>
-                                        <button onClick={() => editGrammar(id)}>EDIT</button>
-                                        <CorrectGrammarButton id={id} score={score} />
+                                    <p>{randomlengthOfGrammar}</p>
+                                    <p>{currentlyEditing}</p>
+                                    <p>{index}</p>
+                                    <div style={styles.grammarContainer} className='testStyle'>
+                                        <div
+                                            style={{
+                                                fontFamily: 'Helvetica, Arial, sans-serif',
+                                                fontSize: '12pt'
+                                            }}
+                                            dangerouslySetInnerHTML={{ __html: answer }}
+                                        />
                                     </div>
-                                )
-                                : null
-                    )
-                    )}
+                                    <p>{score}</p>
+                                    <button onClick={() => editGrammar(id)}>EDIT</button>
+                                    <CorrectGrammarButton id={id} score={score} />
+                                </div>
+                            ) : index === randomlengthOfGrammar ? (
+                                <div key={id}>
+                                    <p>{randomlengthOfGrammar}</p>
+                                    <p>{+currentlyEditing}</p>
+                                    <p>{index}</p>
+                                    <div style={styles.grammarContainer} className='testStyle'>
+                                        <div
+                                            style={{
+                                                fontFamily: 'Helvetica, Arial, sans-serif',
+                                                fontSize: '12pt'
+                                            }}
+                                            dangerouslySetInnerHTML={{ __html: answer }}
+                                        />
+                                    </div>
+                                    <p>{score}</p>
+                                    <button onClick={() => editGrammar(id)}>EDIT</button>
+                                    <CorrectGrammarButton id={id} score={score} />
+                                </div>
+                            ) : null
+                        )
+                    ))}
             </div>
         </div>
     );
+
+
 
 
 
