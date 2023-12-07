@@ -20,7 +20,6 @@ export default function ListGrammar() {
         setEditorToeditCurrentGrammar(true)
         setCurrentlyEditing(randomlengthOfGrammar)
     }
-
     // This function is helping to sent false from EditGrammar in this parent component.
     const callback = (value) => {
         setEditorToeditCurrentGrammar(value)
@@ -49,18 +48,18 @@ export default function ListGrammar() {
                         ) : (
                             (index === randomlengthOfGrammar) ? (
                                 <div key={id}>
-                                <div style={styles.grammarContainer} className='testStyle'>
-                                    <div
-                                        style={{
-                                            fontFamily: 'Helvetica, Arial, sans-serif',
-                                            fontSize: '12pt'
-                                        }}
-                                        dangerouslySetInnerHTML={{ __html: answer }}
-                                    />
+                                    <div style={styles.grammarContainer} className='testStyle'>
+                                        <div
+                                            style={{
+                                                fontFamily: 'Helvetica, Arial, sans-serif',
+                                                fontSize: '12pt'
+                                            }}
+                                            dangerouslySetInnerHTML={{ __html: answer }}
+                                        />
+                                    </div>
+                                    <button onClick={() => editGrammar(id)}>EDIT</button>
+                                    <CorrectGrammarButton id={id} score={score} />
                                 </div>
-                                <button onClick={() => editGrammar(id)}>EDIT</button>
-                                <CorrectGrammarButton id={id} score={score} />
-                            </div>
                             ) : (typeof currentlyEditing === 'number' && index === currentlyEditing) ? (
                                 
                                 <div key={id}>
