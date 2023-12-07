@@ -14,6 +14,12 @@ export default function ListGrammar() {
     const [randomlengthOfGrammar, setRandomlengthOfGrammar] = useState(null)
     const [currentlyEditing, setCurrentlyEditing] = useState(null)
 
+    // Press button next to generate random grammar and return that new random grammar.
+    const nextGrammar = () =>{
+        const randomNext = Math.floor(Math.random() * grammar.length)
+        setRandomlengthOfGrammar(randomNext )
+        setCurrentlyEditing(randomNext )
+    }
 
     const editGrammar = (id) => {
         setEdit(id)
@@ -28,10 +34,10 @@ export default function ListGrammar() {
     useEffect(() => {
         if(typeof currentlyEditing === 'number'){
             setRandomlengthOfGrammar(currentlyEditing)
-            console.log(currentlyEditing,randomlengthOfGrammar)
+            // console.log('first'+currentlyEditing,randomlengthOfGrammar)
         } else{
             setRandomlengthOfGrammar(Math.floor(Math.random() * grammar.length))
-            console.log(currentlyEditing,randomlengthOfGrammar)
+            // console.log('second'+currentlyEditing,randomlengthOfGrammar)
         }   
     }, [grammar])
 
@@ -48,20 +54,26 @@ export default function ListGrammar() {
                         ) : (
                             (index === randomlengthOfGrammar) ? (
                                 <div key={id}>
+                                    <p>{id}</p>
                                     <ShowGrammar answer={answer}></ShowGrammar>
                                     <button onClick={() => editGrammar(id)}>EDIT</button>
                                     <CorrectGrammarButton id={id} score={score} />
+                                    <button onClick={() => nextGrammar()}>next</button>
                                 </div>
                             ) : (typeof currentlyEditing === 'number' && index === currentlyEditing) ? (
                                 
                                 <div key={id}>
+                                    <p>{id}</p>
                                     <ShowGrammar answer={answer}></ShowGrammar>
                                     <button onClick={() => editGrammar(id)}>EDIT</button>
                                     <CorrectGrammarButton id={id} score={score} />
+                                    <button onClick={() => nextGrammar()}>next</button>
                                 </div>
                             ) : null
                         )
-                    ))}
+                        
+                        ))}
+                    
             </div>
         </div>
     );
