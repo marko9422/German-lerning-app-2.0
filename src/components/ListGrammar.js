@@ -49,10 +49,6 @@ export default function ListGrammar() {
                         ) : (
                             (index === randomlengthOfGrammar) ? (
                                 <div key={id}>
-                                <p>FIRST ROW</p>    
-                                <p>{randomlengthOfGrammar}</p>
-                                <p>{+currentlyEditing}</p>
-                                <p>{index}</p>
                                 <div style={styles.grammarContainer} className='testStyle'>
                                     <div
                                         style={{
@@ -62,17 +58,12 @@ export default function ListGrammar() {
                                         dangerouslySetInnerHTML={{ __html: answer }}
                                     />
                                 </div>
-                                <p>{score}</p>
                                 <button onClick={() => editGrammar(id)}>EDIT</button>
                                 <CorrectGrammarButton id={id} score={score} />
                             </div>
                             ) : (typeof currentlyEditing === 'number' && index === currentlyEditing) ? (
                                 
                                 <div key={id}>
-                                    <p>SECOND ROW</p>   
-                                    <p>{randomlengthOfGrammar}</p>
-                                    <p>{+currentlyEditing}</p>
-                                    <p>{index}</p>
                                     <div style={styles.grammarContainer} className='testStyle'>
                                         <div
                                             style={{
@@ -82,7 +73,6 @@ export default function ListGrammar() {
                                             dangerouslySetInnerHTML={{ __html: answer }}
                                         />
                                     </div>
-                                    <p>{score}</p>
                                     <button onClick={() => editGrammar(id)}>EDIT</button>
                                     <CorrectGrammarButton id={id} score={score} />
                                 </div>
