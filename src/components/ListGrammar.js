@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from 'react';
-
 import useFetchGrammar from '../hooks/useFetchGrammar';
 import EditGrammar from './EditGrammar';
 import CorrectGrammarButton from './CorrectGrammarButton';
