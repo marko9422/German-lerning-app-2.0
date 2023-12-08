@@ -32,15 +32,11 @@ export default function ListWords() {
                         (<>
                         <p>{english}</p>
                         <p>{german}</p>
-                        <p>{englishScore}</p>
-                        <p>{germanScore}</p>
                         <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
                         </>) : (
                         <>
                         <p>{german}</p>
                         <p>{english}</p>
-                        <p>{englishScore}</p>
-                        <p>{germanScore}</p>
                         <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
                         </>)
                     }
