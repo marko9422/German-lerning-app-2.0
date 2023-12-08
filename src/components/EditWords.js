@@ -28,9 +28,6 @@ export default function AddNewWord(props) {
     // props?.callback(false)
     // setLoadingAfterPost(true)
 
-
-
-
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -46,6 +43,7 @@ export default function AddNewWord(props) {
         } else {
             editWordsInsideDatabase()
             setInputs({})
+            props?.callback(false)
         }
 
     }

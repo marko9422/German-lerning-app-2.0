@@ -10,9 +10,12 @@ export default function ListWords() {
     const [chooseListedLanguage, setChooseListedLanguage] = useState('english')
     const [editingThisWords, setEditingThisWords] = useState(false)
 
+    const callback = (value) => {
+        setEditingThisWords(value)
+    }
+
     const editWords = (id) => {
         setEditingThisWords(true)
-
     }
 
     // Set listed language of the first words.
@@ -50,7 +53,7 @@ export default function ListWords() {
                             <button onClick={() => editWords(id)}>edit</button>
                             </>)
                         
-                    : <EditWords id={id} english={english} german={german}></EditWords>
+                    : <EditWords {...{ callback }} id={id} english={english} german={german} ></EditWords>
                     }
 
                     </div>
