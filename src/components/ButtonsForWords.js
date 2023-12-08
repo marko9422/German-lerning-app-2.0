@@ -19,9 +19,15 @@ export default function ButtonsForWords(props) {
     }
 
     const wrong = async () => {
-        const textareaDoc = doc(db, 'words', props.id)
-        const updateTextarea = { score: props.score - 1 }
-        await updateDoc(textareaDoc, updateTextarea);
+        if (props.chooseListedLanguage == 'english'){
+            const textareaDoc = doc(db, 'words', props.id)
+            const updateTextarea = { englishScore: props.englishScore - 1 }
+            await updateDoc(textareaDoc, updateTextarea);
+        } else {
+            const textareaDoc = doc(db, 'words', props.id)
+            const updateTextarea = { germanScore: props.germanScore - 1 }
+            await updateDoc(textareaDoc, updateTextarea);
+        }
     }
 
     const doNotShowAgain = async () => {
