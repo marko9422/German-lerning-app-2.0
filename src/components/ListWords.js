@@ -13,7 +13,7 @@ export default function ListWords() {
 
     useEffect(() => {
         setRandomlengthOfWord(Math.floor(Math.random() * words.length))
-    },)
+    },[])
 
     const nextWorld = () => {
         setRandomlengthOfWord(Math.floor(Math.random() * words.length))
