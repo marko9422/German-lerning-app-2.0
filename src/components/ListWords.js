@@ -45,7 +45,7 @@ export default function ListWords() {
             <p>Loading...</p>
           ) : (
             // Loaded words from firebase...
-            words.map(({ id, english, german, englishScore, germanScore, visible }, index) => (
+            words.map(({ id, english, german, englishScore, germanScore, englishExample, germanExample }, index) => (
               <div key={id}>
                 {editingThisWords === false ? (
                   chooseListedLanguage === 'german' ? (
@@ -53,6 +53,8 @@ export default function ListWords() {
                       <>
                         <p>{english}</p>
                         <p>{german}</p>
+                        <p>{englishExample}</p>
+                        <p>{germanExample}</p>
                         <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
                         <button onClick={() => editWords(id)}>edit</button>
                         <button onClick={() => nextWorld()}>next</button>
@@ -63,6 +65,8 @@ export default function ListWords() {
                       <>
                         <p>{german}</p>
                         <p>{english}</p>
+                        <p>{englishExample}</p>
+                        <p>{germanExample}</p>
                         <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
                         <button onClick={() => editWords(id)}>edit</button>
                         <button onClick={() => nextWorld()}>next</button>

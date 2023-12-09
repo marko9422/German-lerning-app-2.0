@@ -16,6 +16,8 @@ export default function AddNewWord() {
         await addDoc(userCollectionRef, { 
             english: inputs.englishShortText,
             german: inputs.germanShortText,
+            englishExample: inputs.englishExample,
+            germanExample: inputs.germanExample,
             englishScore: 10000,
             germanScore: 10000,
             visible: true,
@@ -59,6 +61,25 @@ export default function AddNewWord() {
                         name='germanShortText'
                         value={inputs.germanShortText || ''}
                         placeholder='GERMAN'
+                        onChange={handleChange}
+                        type="text"
+                        autoComplete="off" />
+                </Form.Group>
+                
+                <Form.Group className="mb-3"  >
+                    <Form.Control
+                        name='englishExample'
+                        value={inputs.englishExample || ''}
+                        placeholder='English sentense example.'
+                        onChange={handleChange} type="text"
+                        autoComplete="off" />
+                </Form.Group>
+
+                <Form.Group className="mb-3"  >
+                    <Form.Control
+                        name='germanExample'
+                        value={inputs.germanExample || ''}
+                        placeholder='German sentense example.'
                         onChange={handleChange}
                         type="text"
                         autoComplete="off" />
