@@ -10,6 +10,8 @@ export default function AddNewWord(props) {
     const [inputs, setInputs] = useState({
         englishShortText: props.english || '',
         germanShortText: props.german || '',
+        englishExample: props.englishExample || '',
+        germanExample: props.germanExample || '',
     });
 
     const userCollectionRef = collection(db, 'words')
@@ -20,13 +22,11 @@ export default function AddNewWord(props) {
         const updateTextarea = {
             english: inputs.englishShortText,
             german: inputs.germanShortText,
+            englishExample: inputs.englishExample,
+            germanExample: inputs.germanExample,
         }
         await updateDoc(textareaDoc, updateTextarea);
     }
-
-    // setLoadingAfterPost(false)
-    // props?.callback(false)
-    // setLoadingAfterPost(true)
 
     const handleChange = (e) => {
         const name = e.target.name;
@@ -65,6 +65,25 @@ export default function AddNewWord(props) {
                         name='germanShortText'
                         value={inputs.germanShortText || props.german}
                         placeholder='GERMAN'
+                        onChange={handleChange}
+                        type="text"
+                        autoComplete="off" />
+                </Form.Group>
+
+                <Form.Group className="mb-3"  >
+                    <Form.Control
+                        name='englishExample'
+                        value={inputs.englishExample || props.englishExample}
+                        placeholder='English sentense example.'
+                        onChange={handleChange} type="text"
+                        autoComplete="off" />
+                </Form.Group>
+
+                <Form.Group className="mb-3"  >
+                    <Form.Control
+                        name='germanExample'
+                        value={inputs.germanExample || props.germanExample}
+                        placeholder='German sentense example.'
                         onChange={handleChange}
                         type="text"
                         autoComplete="off" />

@@ -37,50 +37,43 @@ export default function ListWords() {
     }
 
     return (
-        <div className='container'>
-          <h3>Choose listed</h3>
-          <button onClick={() => setEnglishLanguage()}>English</button>
-          <button onClick={() => setGermanLanguage()}>German</button>
-          {loading ? (
-            <p>Loading...</p>
-          ) : (
-            // Loaded words from firebase...
-            words.map(({ id, english, german, englishScore, germanScore, englishExample, germanExample }, index) => (
-              <div key={id}>
-                {editingThisWords === false ? (
-                  chooseListedLanguage === 'german' ? (
-                    index === randomlengthOfWord && (
-                      <>
-                        <p>{english}</p>
-                        <p>{german}</p>
-                        <p>{englishExample}</p>
-                        <p>{germanExample}</p>
-                        <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
-                        <button onClick={() => editWords(id)}>edit</button>
-                        <button onClick={() => nextWorld()}>next</button>
-                      </>
-                    )
+      <div className='container'>
+        <h3>Choose listed</h3>
+        <button onClick={() => setEnglishLanguage()}>English</button>
+        <button onClick={() => setGermanLanguage()}>German</button>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          // Loaded words from firebase...
+          words.map(({ id, english, german, englishScore, germanScore, englishExample, germanExample }, index) => (
+            <div key={id}>
+              {editingThisWords === false && index === randomlengthOfWord && (
+                <>
+                  {chooseListedLanguage === 'german' ? (
+                    <>
+                      <p>{english}</p>
+                      <p>{german}</p>
+                    </>
                   ) : (
-                    index === randomlengthOfWord && (
-                      <>
-                        <p>{german}</p>
-                        <p>{english}</p>
-                        <p>{englishExample}</p>
-                        <p>{germanExample}</p>
-                        <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
-                        <button onClick={() => editWords(id)}>edit</button>
-                        <button onClick={() => nextWorld()}>next</button>
-
-                      </>
-                    )
-                  )
-                ) : (
-                  <EditWords {...{ callback }} id={id} english={english} german={german}></EditWords>
-                )}
-              </div>
-            ))
-          )}
-        </div>
-      );
-      
+                    <>
+                      <p>{german}</p>
+                      <p>{english}</p>
+                    </>
+                  )}
+                  <p>{englishExample}</p>
+                  <p>{germanExample}</p>
+                  <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
+                  <button onClick={() => editWords(id)}>edit</button>
+                  <button onClick={() => nextWorld()}>next</button>
+                </>
+              )}
+              {editingThisWords === true && index === randomlengthOfWord && (
+                <EditWords {...{ callback }} id={id} english={english} german={german} englishExample={englishExample} germanExample={germanExample}></EditWords>
+              )}
+            </div>
+          ))
+        )}
+      </div>
+    );
+    
 }
