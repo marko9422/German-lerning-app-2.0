@@ -30,17 +30,10 @@ export default function ButtonsForWords(props) {
         }
     }
 
-    const doNotShowAgain = async () => {
-        const textareaDoc = doc(db, 'words', props.id)
-        const updateTextarea = { visible: false }
-        await updateDoc(textareaDoc, updateTextarea);
-    }
-
     return (
         <>
             <button onClick={() => correct()}>correct</button>
             <button onClick={() => wrong()}>wrong</button>
-            <button onClick={() => doNotShowAgain()}>Do not show again.</button>
         </>
     )
 }
