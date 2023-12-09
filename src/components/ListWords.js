@@ -15,6 +15,10 @@ export default function ListWords() {
         setRandomlengthOfWord(Math.floor(Math.random() * words.length))
     },)
 
+    const nextWorld = () => {
+        setRandomlengthOfWord(Math.floor(Math.random() * words.length))
+    }
+
     const callback = (value) => {
         setEditingThisWords(value)
     }
@@ -51,6 +55,7 @@ export default function ListWords() {
                         <p>{german}</p>
                         <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
                         <button onClick={() => editWords(id)}>edit</button>
+                        <button onClick={() => nextWorld()}>next</button>
                       </>
                     )
                   ) : (
@@ -60,6 +65,8 @@ export default function ListWords() {
                         <p>{english}</p>
                         <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
                         <button onClick={() => editWords(id)}>edit</button>
+                        <button onClick={() => nextWorld()}>next</button>
+
                       </>
                     )
                   )
