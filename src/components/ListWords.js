@@ -9,6 +9,11 @@ export default function ListWords() {
     const [loading, words] = useFetchWords()
     const [chooseListedLanguage, setChooseListedLanguage] = useState('english')
     const [editingThisWords, setEditingThisWords] = useState(false)
+    const [randomlengthOfWord, setRandomlengthOfWord] = useState(null)
+
+    useEffect(() => {
+        setRandomlengthOfWord(Math.floor(Math.random() * words.length))
+    },)
 
     const callback = (value) => {
         setEditingThisWords(value)
@@ -29,36 +34,42 @@ export default function ListWords() {
 
     return (
         <div className='container'>
-            <h3>Choose listed</h3>
-            <button onClick={() => setEnglishLanguage()}>English</button>
-            <button onClick={() => setGermanLanguage()}>German</button>
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                // Loaded words from firebase...
-                words.map(({ id, english, german, englishScore, germanScore, visible }, index) => (
-                    <div key={id}>
-                    {editingThisWords == false ?
-                        chooseListedLanguage == 'german' ?
-                            (<>
-                            <p>{english}</p>
-                            <p>{german}</p>
-                            <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
-                            <button onClick={() => editWords(id)}>edit</button>
-                            </>) : (
-                            <>
-                            <p>{german}</p>
-                            <p>{english}</p>
-                            <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
-                            <button onClick={() => editWords(id)}>edit</button>
-                            </>)
-                        
-                    : <EditWords {...{ callback }} id={id} english={english} german={german} ></EditWords>
-                    }
-
-                    </div>
-                ))
-            )}
+          <h3>Choose listed</h3>
+          <button onClick={() => setEnglishLanguage()}>English</button>
+          <button onClick={() => setGermanLanguage()}>German</button>
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            // Loaded words from firebase...
+            words.map(({ id, english, german, englishScore, germanScore, visible }, index) => (
+              <div key={id}>
+                {editingThisWords === false ? (
+                  chooseListedLanguage === 'german' ? (
+                    index === randomlengthOfWord && (
+                      <>
+                        <p>{english}</p>
+                        <p>{german}</p>
+                        <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
+                        <button onClick={() => editWords(id)}>edit</button>
+                      </>
+                    )
+                  ) : (
+                    index === randomlengthOfWord && (
+                      <>
+                        <p>{german}</p>
+                        <p>{english}</p>
+                        <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
+                        <button onClick={() => editWords(id)}>edit</button>
+                      </>
+                    )
+                  )
+                ) : (
+                  <EditWords {...{ callback }} id={id} english={english} german={german}></EditWords>
+                )}
+              </div>
+            ))
+          )}
         </div>
-    )
+      );
+      
 }
