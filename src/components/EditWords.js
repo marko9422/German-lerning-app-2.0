@@ -1,28 +1,31 @@
-import { useRef,useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { db } from '../firebase/config'
-import { collection, addDoc } from 'firebase/firestore';
+import { doc, collection, updateDoc } from 'firebase/firestore';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-export default function AddNewWord() {
+export default function AddNewWord(props) {
 
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState({
+        englishShortText: props.english || '',
+        germanShortText: props.german || '',
+        englishExample: props.englishExample || '',
+        germanExample: props.germanExample || '',
+    });
 
     const userCollectionRef = collection(db, 'words')
     const editorRef = useRef(null);
 
-    const saveIntoFirestore = async () => {
-        await addDoc(userCollectionRef, { 
+    const editWordsInsideDatabase = async () => {
+        const textareaDoc = doc(db, 'words', props.id)
+        const updateTextarea = {
             english: inputs.englishShortText,
             german: inputs.germanShortText,
             englishExample: inputs.englishExample,
             germanExample: inputs.germanExample,
-            englishScore: 10000,
-            germanScore: 10000,
-            visible: true,
-            class: 'test'
-        });
+        }
+        await updateDoc(textareaDoc, updateTextarea);
     }
 
     const handleChange = (e) => {
@@ -36,10 +39,11 @@ export default function AddNewWord() {
         // FILL THE TEXT ALLERT IF IS IMPUT EMPTY.
         if (!inputs.englishShortText || !inputs.germanShortText) {
             alert('Please fill in the text.');
-            return;   
+            return;
         } else {
-            saveIntoFirestore()
+            editWordsInsideDatabase()
             setInputs({})
+            props?.callback(false)
         }
 
     }
@@ -50,7 +54,7 @@ export default function AddNewWord() {
                 <Form.Group className="mb-3"  >
                     <Form.Control
                         name='englishShortText'
-                        value={inputs.englishShortText || ''}
+                        value={inputs.englishShortText || props.english}
                         placeholder='ENGLISH'
                         onChange={handleChange} type="text"
                         autoComplete="off" />
@@ -59,17 +63,17 @@ export default function AddNewWord() {
                 <Form.Group className="mb-3"  >
                     <Form.Control
                         name='germanShortText'
-                        value={inputs.germanShortText || ''}
+                        value={inputs.germanShortText || props.german}
                         placeholder='GERMAN'
                         onChange={handleChange}
                         type="text"
                         autoComplete="off" />
                 </Form.Group>
-                
+
                 <Form.Group className="mb-3"  >
                     <Form.Control
                         name='englishExample'
-                        value={inputs.englishExample || ''}
+                        value={inputs.englishExample || props.englishExample}
                         placeholder='English sentense example.'
                         onChange={handleChange} type="text"
                         autoComplete="off" />
@@ -78,7 +82,7 @@ export default function AddNewWord() {
                 <Form.Group className="mb-3"  >
                     <Form.Control
                         name='germanExample'
-                        value={inputs.germanExample || ''}
+                        value={inputs.germanExample || props.germanExample}
                         placeholder='German sentense example.'
                         onChange={handleChange}
                         type="text"

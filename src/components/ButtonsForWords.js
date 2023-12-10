@@ -1,8 +1,10 @@
-import React from 'react'
+import {useState} from 'react'
 
 import { db } from '../firebase/config'
-// Imports components.
 import { updateDoc, doc } from 'firebase/firestore';
+import './styles.css';
+
+
 
 export default function ButtonsForWords(props) {
 
@@ -16,6 +18,8 @@ export default function ButtonsForWords(props) {
             const updateTextarea = { germanScore: props.germanScore + 1 }
             await updateDoc(textareaDoc, updateTextarea);
         }
+        const targetDiv = document.querySelector('.correctWrong');
+        targetDiv.classList.add("unclicable");
     }
 
     const wrong = async () => {
@@ -28,19 +32,17 @@ export default function ButtonsForWords(props) {
             const updateTextarea = { germanScore: props.germanScore - 1 }
             await updateDoc(textareaDoc, updateTextarea);
         }
-    }
-
-    const doNotShowAgain = async () => {
-        const textareaDoc = doc(db, 'words', props.id)
-        const updateTextarea = { visible: false }
-        await updateDoc(textareaDoc, updateTextarea);
+        const targetDiv = document.querySelector('.correctWrong');
+        targetDiv.classList.add("unclicable");
     }
 
     return (
         <>
-            <button onClick={() => correct()}>correct</button>
-            <button onClick={() => wrong()}>wrong</button>
-            <button onClick={() => doNotShowAgain()}>Do not show again.</button>
+        <div className='correctWrong'>
+            <button onClick={correct} >correct</button>
+            <button onClick={wrong} >wrong</button>
+        </div> 
         </>
     )
 }
+

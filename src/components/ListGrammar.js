@@ -33,10 +33,8 @@ export default function ListGrammar() {
     useEffect(() => {
         if(typeof currentlyEditing === 'number'){
             setRandomlengthOfGrammar(currentlyEditing)
-            // console.log('first'+currentlyEditing,randomlengthOfGrammar)
         } else{
             setRandomlengthOfGrammar(Math.floor(Math.random() * grammar.length))
-            // console.log('second'+currentlyEditing,randomlengthOfGrammar)
         }   
     }, [grammar])
 
