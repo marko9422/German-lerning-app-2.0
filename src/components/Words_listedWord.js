@@ -17,8 +17,16 @@ export default function Words_listedWord(props) {
         refGermanWord.current.style.display = 'block';
     };
 
+    function myFunction() {
+        const popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+      }
+
     return (
         <div>
+            <div className="popup" onClick={() => myFunction()}>Click me to toggle the popup!
+                <span className="popuptext" id="myPopup">A Simple Popup!</span>
+            </div>
             {props.chooseListedLanguage === 'english' ? (
                 <>
                 <p>{props.chooseListedLanguage}</p>
