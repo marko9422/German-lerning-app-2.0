@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react';
 import useFetchWords from '../hooks/useFetchWords'
 import ButtonsForWords from './ButtonsForWords';
 import EditWords from './EditWords'
+import Words_listedWord from './Words_listedWord';
 
 
 export default function ListWords() {
@@ -51,17 +52,13 @@ export default function ListWords() {
                 <>
                   {chooseListedLanguage === 'german' ? (
                     <>
-                      <p>{english}</p>
-                      <p>{german}</p>
+                      <Words_listedWord chooseListedLanguage={chooseListedLanguage} english={english} german={german} englishExample={englishExample} germanExample={germanExample}></Words_listedWord>
                     </>
                   ) : (
                     <>
-                      <p>{german}</p>
-                      <p>{english}</p>
+                      <Words_listedWord chooseListedLanguage={chooseListedLanguage} english={english} german={german} englishExample={englishExample} germanExample={germanExample}></Words_listedWord>
                     </>
                   )}
-                  <p>{englishExample}</p>
-                  <p>{germanExample}</p>
                   <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
                   <button onClick={() => editWords(id)}>edit</button>
                   <button onClick={() => nextWorld()}>next</button>
