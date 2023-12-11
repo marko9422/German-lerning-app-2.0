@@ -17,6 +17,15 @@ export default function Words_listedWord(props) {
         refGermanWord.current.style.display = 'block';
     };
 
+    function PopUpEnglish() {
+        const popup = document.getElementById("myPopupEnglish");
+        popup.classList.toggle("show");
+      }
+    function PopUpGerman() {
+        const popup = document.getElementById("myPopupGerman");
+        popup.classList.toggle("show");
+      }
+
     return (
         <div>
             {props.chooseListedLanguage === 'english' ? (
@@ -29,8 +38,14 @@ export default function Words_listedWord(props) {
                     <p ref={refGermanWord} className='hidden'> {props.german}</p>
                 </div>
 
-                <div>{props.englishExample}</div>
-                <div>{props.germanExample}</div>
+                <div className="popup" onClick={() => PopUpEnglish()}>
+                    English
+                    <span className="popuptext" id="myPopupEnglish">{props.englishExample}</span>
+                </div>
+                <div className="popup" onClick={() => PopUpGerman()}>
+                    German
+                    <span className="popuptext" id="myPopupGerman">{props.germanExample}</span>
+                </div>
                 </>
             ) : (
                 <>
@@ -42,8 +57,14 @@ export default function Words_listedWord(props) {
                     <p ref={refEnglishWord} className='hidden'>{props.english}</p>
                 </div>
 
-                <div>{props.germanExample}</div>
-                <div>{props.englishExample}</div>
+                <div className="popup" onClick={() => PopUpGerman()}>
+                    German
+                    <span className="popuptext" id="myPopupGerman">{props.germanExample}</span>
+                </div>
+                <div className="popup" onClick={() => PopUpEnglish()}>
+                    English
+                    <span className="popuptext" id="myPopupEnglish">{props.englishExample}</span>
+                </div>
                 </>
             )}
         </div>
