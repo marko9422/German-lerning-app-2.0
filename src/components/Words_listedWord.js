@@ -57,10 +57,12 @@ export default function Words_listedWord(props) {
                     <p ref={refEnglishWord} className='hidden'>{props.english}</p>
                 </div>
 
-                <div className="popup" onClick={() => PopUpGerman()}>{props.germanExample}
+                <div className="popup" onClick={() => PopUpGerman()}>
+                    German
                     <span className="popuptext" id="myPopupGerman">{props.germanExample}</span>
                 </div>
-                <div className="popup" onClick={() => PopUpEnglish()}>{props.englishExample}
+                <div className="popup" onClick={() => PopUpEnglish()}>
+                    English
                     <span className="popuptext" id="myPopupEnglish">{props.englishExample}</span>
                 </div>
                 </>
