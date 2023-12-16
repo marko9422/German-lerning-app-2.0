@@ -32,10 +32,10 @@ export default function Words_listedWord(props) {
                 <>
                 <p>{props.chooseListedLanguage}</p>
                 <div ref={refEnglish} onClick={showEnglish} className='div_style' style={{ backgroundColor: 'rgb(187, 196, 199)' }}>
-                    <p ref={refEnglishWord} className=''>{props.english}</p>
+                    <p ref={refEnglishWord} className='wordsInside_Words_listedWord'>{props.english}</p>
                 </div>
                 <div ref={refGerman} onClick={showGerman} className='div_style' style={{ backgroundColor: 'rgb(43, 167, 215)' }}>
-                    <p ref={refGermanWord} className='hidden'> {props.german}</p>
+                    <p ref={refGermanWord} className='hidden wordsInside_Words_listedWord'> {props.german}</p>
                 </div>
 
                 <div className="popup" onClick={() => PopUpEnglish()}>
@@ -51,10 +51,10 @@ export default function Words_listedWord(props) {
                 <>
                 <p>{props.chooseListedLanguage}</p>
                 <div ref={refGerman} onClick={showGerman} className='div_style' style={{ backgroundColor: 'rgb(187, 196, 199)'}} >
-                    <p ref={refGermanWord} className=''> {props.german}</p>
+                    <p ref={refGermanWord} className='wordsInside_Words_listedWord'> {props.german}</p>
                 </div>
                 <div ref={refEnglish} onClick={showEnglish} className='div_style' style={{ backgroundColor: 'rgb(43, 167, 215)' }}>
-                    <p ref={refEnglishWord} className='hidden'>{props.english}</p>
+                    <p ref={refEnglishWord} className='hidden wordsInside_Words_listedWord'>{props.english}</p>
                 </div>
 
                 <div className="popup" onClick={() => PopUpGerman()}>

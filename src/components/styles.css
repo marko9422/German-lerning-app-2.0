@@ -4,7 +4,7 @@
     cursor: not-allowed;
   }
 
-  p {
+  p.wordsInside_Words_listedWord {
     margin-top: 0;
     margin-bottom: 0;
   }

@@ -28,7 +28,7 @@ const SignIn = () => {
         navigate("/")
       })
       .catch((error) => {
-        setError(true);
+        // setError(true);
       });
   };
 

@@ -1,22 +1,16 @@
 import './App.css';
 import { React, useContext } from 'react';
 
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
-
 // Imports components.
 import Home from './pages/Home';
 import Textarea from './pages/Textarea';
 import ListGrammar from './pages/ListGrammar';
 import AddNewWord from './pages/AddNewWord';
 import ListWords from './pages/ListWords';
-
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
-import AuthDetails from './components/AuthDetails';
 import { AuthContext } from "../src/context/AuthContext";
 
 
