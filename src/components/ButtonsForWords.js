@@ -1,5 +1,3 @@
-import {useState} from 'react'
-
 import { db } from '../firebase/config'
 import { updateDoc, doc } from 'firebase/firestore';
 import './styles.css';

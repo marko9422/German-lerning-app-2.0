@@ -4,6 +4,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import NavbarMenu from '../components/NavbarMenu';
 
 export default function AddNewWord() {
 
@@ -45,6 +46,8 @@ export default function AddNewWord() {
     }
 
     return (
+        <>
+        <NavbarMenu></NavbarMenu>
         <div className='container'>
             <Form onSubmit={handleSubmit} >
                 <Form.Group className="mb-3"  >
@@ -90,5 +93,6 @@ export default function AddNewWord() {
             </Form>
 
         </div>
+        </>
     )
 }

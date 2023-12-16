@@ -1,56 +1,51 @@
 import './App.css';
-import { React} from 'react';
+import { React, useContext } from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 
 // Imports components.
-import Home from './components/Home';
-import Textarea from './components/Textarea';
-import ListGrammar from './components/ListGrammar';
-import AddNewWord from './components/AddNewWord';
-import ListWords from './components/ListWords';
+import Home from './pages/Home';
+import Textarea from './pages/Textarea';
+import ListGrammar from './pages/ListGrammar';
+import AddNewWord from './pages/AddNewWord';
+import ListWords from './pages/ListWords';
+
+import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp';
+import AuthDetails from './components/AuthDetails';
+import { AuthContext } from "../src/context/AuthContext";
 
 
 function App() {
 
+  const { currentUser } = useContext(AuthContext)
+
+  const RequireAuth = ({ children }) => {
+    return currentUser ? children : <Navigate to="/SignIn" />;
+  };
 
   return (
     <>
       <BrowserRouter>
-        <Navbar expand="lg" className="bg-body-tertiary">
-          <Container >
-            <Navbar.Brand as={Link} to='/'>home</Navbar.Brand>
-            <Navbar.Toggle aria-controls="navbarScroll" />
-            <Navbar.Collapse id="navbarScroll">
-              <Nav
-                className="me-auto my-2 my-lg-0"
-                style={{ maxHeight: '100px' }}
-                navbarScroll
-              >
-                <Nav.Link  as={Link} to='/Textarea'>textarea</Nav.Link>
-                <Nav.Link  as={Link} to='/ListGrammar'>List Grammar</Nav.Link>
-                <Nav.Link  as={Link} to='/AddNewWord'>Add NewWord </Nav.Link>
-                <Nav.Link  as={Link} to='/ListWords'>List Words </Nav.Link>
-              </Nav>
-
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-
         <Routes>
-        <Route path='/' element={< Home/>} />
-        <Route path='/Textarea' element={< Textarea/>} />
-        <Route path='/ListGrammar' element={< ListGrammar/>} />
-        <Route path='/AddNewWord' element={< AddNewWord/>} />
-        <Route path='/ListWords' element={< ListWords/>} />
-    </Routes>
+          <Route path='/'>
+            <Route path='SignIn' element={<SignIn />}></Route>
+            <Route index element={<RequireAuth> <Home /> </RequireAuth>} />
+            <Route path='SignUp' element={<SignUp />}></Route>
+            {/* Pages */}
+            <Route path='/Textarea' element={<RequireAuth> <Textarea /> </RequireAuth>} />
+            <Route path='ListGrammar' element={<RequireAuth> <ListGrammar /> </RequireAuth>} />
+            <Route path='AddNewWord' element={<RequireAuth> <AddNewWord /> </RequireAuth>} />
+            <Route path='ListWords' element={<RequireAuth> <ListWords /> </RequireAuth>} />
+          </Route>
+        </Routes>
       </BrowserRouter>
     </>
   );
 }
 
-      export default App;
+export default App;

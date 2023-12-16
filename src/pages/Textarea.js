@@ -1,9 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-
 import { db } from '../firebase/config'
-// Imports components.
 import { collection, addDoc } from 'firebase/firestore';
+import NavbarMenu from '../components/NavbarMenu';
 
 export default function Textarea({ initialValue }) {
 
@@ -24,6 +23,8 @@ export default function Textarea({ initialValue }) {
     const editorRef = useRef(null);
 
     return (
+        <>
+        <NavbarMenu></NavbarMenu>
         <div className='container'>
             {loadingAfterPost ?
                 <>
@@ -61,6 +62,7 @@ export default function Textarea({ initialValue }) {
                 dangerouslySetInnerHTML={{ __html: textarea }}
             ></div>
         </div>
+        </>
     );
 
 }

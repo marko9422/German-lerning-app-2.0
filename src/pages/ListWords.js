@@ -1,8 +1,9 @@
 import { React, useState, useEffect } from 'react';
 import useFetchWords from '../hooks/useFetchWords'
-import ButtonsForWords from './ButtonsForWords';
-import EditWords from './EditWords'
-import Words_listedWord from './Words_listedWord';
+import ButtonsForWords from '../components/ButtonsForWords';
+import EditWords from '../components/EditWords'
+import Words_listedWord from '../components/Words_listedWord';
+import NavbarMenu from '../components/NavbarMenu';
 
 
 export default function ListWords() {
@@ -38,6 +39,9 @@ export default function ListWords() {
     }
 
     return (
+      <>
+      <NavbarMenu></NavbarMenu>
+      
       <div className='container'>
         <h3>Choose listed</h3>
         <button onClick={() => setEnglishLanguage()}>English</button>
@@ -71,6 +75,7 @@ export default function ListWords() {
           ))
         )}
       </div>
+      </>
     );
     
 }
