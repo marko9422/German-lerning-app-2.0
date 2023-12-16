@@ -1,8 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-
 import { db } from '../firebase/config'
-// Imports components.
 import { collection, updateDoc, doc } from 'firebase/firestore';
 
 export default function EditGrammar(props) {

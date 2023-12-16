@@ -1,8 +1,6 @@
 import React from 'react'
 import './styles.css'
-
 import { db } from '../firebase/config'
-// Imports components.
 import { updateDoc, doc } from 'firebase/firestore';
 
 export default function CorrectGrammarButton(props) {

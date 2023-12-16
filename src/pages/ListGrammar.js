@@ -1,8 +1,9 @@
 import { React, useState, useEffect } from 'react';
 import useFetchGrammar from '../hooks/useFetchGrammar';
-import EditGrammar from './EditGrammar';
-import CorrectGrammarButton from './CorrectGrammarButton';
-import ShowGrammar from './ShowGrammar';
+import EditGrammar from '../components/EditGrammar';
+import CorrectGrammarButton from '../components/CorrectGrammarButton';
+import ShowGrammar from '../components/ShowGrammar';
+import NavbarMenu from '../components/NavbarMenu';
 
 export default function ListGrammar() {
 
@@ -39,6 +40,8 @@ export default function ListGrammar() {
     }, [grammar])
 
     return (
+        <>
+        <NavbarMenu></NavbarMenu>
         <div className='container'>
             <div>
                 {loading
@@ -73,11 +76,8 @@ export default function ListGrammar() {
                     
             </div>
         </div>
+        </>
     );
-
-
-
-
 
 }
 
