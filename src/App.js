@@ -2,6 +2,7 @@ import './App.css';
 import { React, useContext } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 // Imports components.
 import Home from './pages/Home';

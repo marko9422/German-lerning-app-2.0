@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { db } from '../firebase/config'
 import { collection, updateDoc, doc } from 'firebase/firestore';
+import Button from 'react-bootstrap/Button';
+
 
 export default function EditGrammar(props) {
 
@@ -48,7 +50,7 @@ export default function EditGrammar(props) {
                             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:12pt; }',
                         }}
                     />
-                    <button onClick={() => EditIntoFirestore(props.id, textarea)}>update</button>
+                    <Button variant="warning" onClick={() => EditIntoFirestore(props.id, textarea)}>update</Button>
                 </>
                 :
                 <div>loading...</div>

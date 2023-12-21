@@ -3,6 +3,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { db } from '../firebase/config'
 import { collection, addDoc } from 'firebase/firestore';
 import NavbarMenu from '../components/NavbarMenu';
+import Button from 'react-bootstrap/Button';
 
 export default function Textarea({ initialValue }) {
 
@@ -48,7 +49,7 @@ export default function Textarea({ initialValue }) {
                             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:12pt; }',
                         }}
                     />
-                    <button onClick={saveIntoFirestore}>save</button>
+                    <Button variant="primary" onClick={saveIntoFirestore}>save</Button>
                 </>
                 :
                 <div>loading...</div>

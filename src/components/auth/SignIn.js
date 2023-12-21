@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useState,useContext,setError } from "react";
+import React, { useState,useContext } from "react";
 import { auth } from "../../firebase/config";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../../context/AuthContext";
@@ -44,7 +44,7 @@ const SignIn = () => {
         navigate("/")
       })
       .catch((error) => {
-        setError(true);
+        // setError(true);
       });
   };
 

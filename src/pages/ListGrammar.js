@@ -4,6 +4,8 @@ import EditGrammar from '../components/EditGrammar';
 import CorrectGrammarButton from '../components/CorrectGrammarButton';
 import ShowGrammar from '../components/ShowGrammar';
 import NavbarMenu from '../components/NavbarMenu';
+import Button from 'react-bootstrap/Button';
+
 
 export default function ListGrammar() {
 
@@ -56,7 +58,7 @@ export default function ListGrammar() {
                                 <div key={id}>
                                     <p>{id}</p>
                                     <ShowGrammar answer={answer}></ShowGrammar>
-                                    <button onClick={() => editGrammar(id)}>EDIT</button>
+                                    <Button variant="warning" onClick={() => editGrammar(id)}>EDIT</Button>
                                     <CorrectGrammarButton id={id} score={score} />
                                     <button onClick={() => nextGrammar()}>next</button>
                                 </div>
@@ -65,9 +67,9 @@ export default function ListGrammar() {
                                 <div key={id}>
                                     <p>{id}</p>
                                     <ShowGrammar answer={answer}></ShowGrammar>
-                                    <button onClick={() => editGrammar(id)}>EDIT</button>
+                                    <Button variant="warning" onClick={() => editGrammar(id)}>EDIT</Button>
                                     <CorrectGrammarButton id={id} score={score} />
-                                    <button onClick={() => nextGrammar()}>next</button>
+                                    <Button variant="dark" onClick={() => nextGrammar()}>next</Button>
                                 </div>
                             ) : null
                         )

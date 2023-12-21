@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { db } from '../firebase/config'
 import { doc, collection, updateDoc } from 'firebase/firestore';
 import 'bootstrap/dist/css/bootstrap.min.css';

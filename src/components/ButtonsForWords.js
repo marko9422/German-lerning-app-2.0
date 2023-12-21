@@ -1,5 +1,6 @@
 import { db } from '../firebase/config'
 import { updateDoc, doc } from 'firebase/firestore';
+import Button from 'react-bootstrap/Button';
 import './styles.css';
 
 
@@ -37,8 +38,8 @@ export default function ButtonsForWords(props) {
     return (
         <>
         <div className='correctWrong'>
-            <button onClick={correct} >correct</button>
-            <button onClick={wrong} >wrong</button>
+            <Button variant="success" onClick={correct} >correct</Button>
+            <Button variant="danger" onClick={wrong} >wrong</Button>
         </div> 
         </>
     )

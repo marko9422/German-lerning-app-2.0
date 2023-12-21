@@ -2,6 +2,8 @@ import React, {useContext,useEffect,useState} from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { auth } from "../../firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
+import Button from 'react-bootstrap/Button';
+
 
 const SignIn = () => {
 
@@ -26,7 +28,7 @@ const SignIn = () => {
     return (
         <>
         <p>{`Signed In as ${authUser}`}</p>
-        <button onClick={() => dispatch({ type: "LOGOUT" })}>Logout</button>
+        <Button variant="danger" onClick={() => dispatch({ type: "LOGOUT" })}>Logout</Button>
         </>
     );
 };
