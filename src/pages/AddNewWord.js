@@ -11,10 +11,11 @@ export default function AddNewWord() {
 
     const [loading, category] = useFetchCategories()
     const [inputs, setInputs] = useState({});
+    const [newCategory, setNewCategory] = useState('')
 
-    const userCollectionRef = collection(db, 'words')
     // const editorRef = useRef(null);
-
+    
+    const userCollectionRef = collection(db, 'words')
     const saveIntoFirestore = async () => {
         await addDoc(userCollectionRef, { 
             english: inputs.englishShortText,
@@ -25,6 +26,13 @@ export default function AddNewWord() {
             germanScore: 10000,
             visible: true,
             class: 'test'
+        });
+    }
+    
+    const categories_of_wordsCollectionRef = collection(db, 'categories_of_words')
+    const saveCategoryIntoFirestore = async () => {
+        await addDoc(categories_of_wordsCollectionRef, { 
+            category: newCategory,
         });
     }
 
@@ -44,8 +52,16 @@ export default function AddNewWord() {
             saveIntoFirestore()
             setInputs({})
         }
-
     }
+
+    const handleNewCategory = (e) => {
+        e.preventDefault();
+        console.log(newCategory)
+        saveCategoryIntoFirestore()
+        setNewCategory('')
+    }
+
+
 
     return (
         <>
@@ -94,6 +110,8 @@ export default function AddNewWord() {
 
             </Form>
 
+
+
             { loading ? 'loading categories...' 
                 : 
             
@@ -101,6 +119,20 @@ export default function AddNewWord() {
                 <p key={one.id}>{one.category}</p>)
             }
 
+            <Form onSubmit={handleNewCategory} >
+                <Form.Group className="mb-3"  >
+                    <Form.Control
+                        name='category'
+                        value={newCategory}
+                        placeholder='add new category'
+                        onChange={(e) => setNewCategory(e.target.value)} 
+                        type="text"
+                        autoComplete="off" />
+                </Form.Group>
+
+                <Button variant="primary" type="submit">Submit</Button>
+
+            </Form>
 
 
         </div>
