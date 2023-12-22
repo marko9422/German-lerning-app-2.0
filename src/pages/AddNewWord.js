@@ -5,13 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NavbarMenu from '../components/NavbarMenu';
+import useFetchCategories from '../hooks/useFetchCategories';
 
 export default function AddNewWord() {
 
+    const [loading, category] = useFetchCategories()
     const [inputs, setInputs] = useState({});
 
     const userCollectionRef = collection(db, 'words')
-    const editorRef = useRef(null);
+    // const editorRef = useRef(null);
 
     const saveIntoFirestore = async () => {
         await addDoc(userCollectionRef, { 
@@ -91,6 +93,15 @@ export default function AddNewWord() {
                 <Button variant="primary" type="submit">Submit</Button>
 
             </Form>
+
+            { loading ? 'loading categories...' 
+                : 
+            
+            category.map((one) => 
+                <p key={one.id}>{one.category}</p>)
+            }
+
+
 
         </div>
         </>
