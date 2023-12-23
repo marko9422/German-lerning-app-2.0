@@ -4,7 +4,7 @@ import { collection, onSnapshot } from 'firebase/firestore';
 
 function useFetchCategories() {
 
-    const [loading,setLoading] = useState(true)
+    const [loadingCategories,setLoading] = useState(true)
     const [category, setCategory] = useState([])
 
 
@@ -21,7 +21,7 @@ function useFetchCategories() {
     }, []);
 
 
-    return (  [loading , category]);
+    return (  [loadingCategories , category]);
 }
 
 export default useFetchCategories;

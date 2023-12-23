@@ -9,7 +9,7 @@ import useFetchCategories from '../hooks/useFetchCategories';
 
 export default function AddNewWord() {
 
-    const [loading, category] = useFetchCategories()
+    const [loadingCategories, category] = useFetchCategories()
     const [inputs, setInputs] = useState({});
     const [newCategory, setNewCategory] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('test')
@@ -111,7 +111,7 @@ export default function AddNewWord() {
                             autoComplete="off" />
                     </Form.Group>
 
-                    {loading ? 'loading categories...'
+                    {loadingCategories ? 'loading categories...'
                         :
                         category.map((one) =>
                             <div key={one.id}>
