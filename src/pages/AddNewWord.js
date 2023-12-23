@@ -26,7 +26,7 @@ export default function AddNewWord() {
             englishScore: 10000,
             germanScore: 10000,
             visible: true,
-            class: selectedCategory
+            category: selectedCategory
         });
     }
 
@@ -111,28 +111,27 @@ export default function AddNewWord() {
                             autoComplete="off" />
                     </Form.Group>
 
+                    {loading ? 'loading categories...'
+                        :
+                        category.map((one) =>
+                            <div key={one.id}>
+                                <input
+                                    type="radio"
+                                    id={`category-${one.id}`}
+                                    name="selectedCategory"
+                                    value={one.category}
+                                    checked={one.category === selectedCategory}
+                                    onChange={handleRadioChange}
+                                />
+                                <label htmlFor={`category-${one.id}`}>{one.category}</label>
+                            </div>
+
+                        )}
+
                     <Button variant="primary" type="submit">Submit</Button>
 
                 </Form>
 
-
-
-                {loading ? 'loading categories...'
-                    :
-                    category.map((one) =>
-                        <div key={one.id}>
-                            <input
-                                type="radio"
-                                id={`category-${one.id}`}
-                                name="selectedCategory"
-                                value={one.category}
-                                checked={one.category === selectedCategory}
-                                onChange={handleRadioChange}
-                            />
-                            <label htmlFor={`category-${one.id}`}>{one.category}</label>
-                        </div>
-
-                    )}
 
                 <Form onSubmit={handleNewCategory} >
                     <Form.Group className="mb-3"  >

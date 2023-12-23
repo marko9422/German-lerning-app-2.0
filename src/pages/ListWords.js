@@ -51,7 +51,7 @@ export default function ListWords() {
           <p>Loading...</p>
         ) : (
           // Loaded words from firebase...
-          words.map(({ id, english, german, englishScore, germanScore, englishExample, germanExample }, index) => (
+          words.map(({ id, english, german, englishScore, germanScore, englishExample, germanExample,category }, index) => (
             <div key={id}>
               {editingThisWords === false && index === randomlengthOfWord && (
                 <>
@@ -61,7 +61,7 @@ export default function ListWords() {
                     </>
                   ) : (
                     <>
-                      <Words_listedWord chooseListedLanguage={chooseListedLanguage} english={english} german={german} englishExample={englishExample} germanExample={germanExample}></Words_listedWord>
+                      <Words_listedWord chooseListedLanguage={chooseListedLanguage} english={english} german={german} englishExample={englishExample} germanExample={germanExample} category={category}></Words_listedWord>
                     </>
                   )}
                   <ButtonsForWords id={id} chooseListedLanguage={chooseListedLanguage} englishScore={englishScore} germanScore={germanScore}></ButtonsForWords>
