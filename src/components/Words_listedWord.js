@@ -20,51 +20,53 @@ export default function Words_listedWord(props) {
     function PopUpEnglish() {
         const popup = document.getElementById("myPopupEnglish");
         popup.classList.toggle("show");
-      }
+    }
     function PopUpGerman() {
         const popup = document.getElementById("myPopupGerman");
         popup.classList.toggle("show");
-      }
+    }
 
     return (
         <div>
             {props.chooseListedLanguage === 'english' ? (
                 <>
-                <p>{props.chooseListedLanguage}</p>
-                <div ref={refEnglish} onClick={showEnglish} className='div_style' style={{ backgroundColor: 'rgb(187, 196, 199)' }}>
-                    <p ref={refEnglishWord} className='wordsInside_Words_listedWord'>{props.english}</p>
-                </div>
-                <div ref={refGerman} onClick={showGerman} className='div_style' style={{ backgroundColor: 'rgb(43, 167, 215)' }}>
-                    <p ref={refGermanWord} className='hidden wordsInside_Words_listedWord'> {props.german}</p>
-                </div>
+                    <p>{props.chooseListedLanguage}</p>
+                    <p>{props.category}</p>
+                    <div ref={refEnglish} onClick={showEnglish} className='div_style' style={{ backgroundColor: 'rgb(187, 196, 199)' }}>
+                        <p ref={refEnglishWord} className='wordsInside_Words_listedWord'>{props.english}</p>
+                    </div>
+                    <div ref={refGerman} onClick={showGerman} className='div_style' style={{ backgroundColor: 'rgb(43, 167, 215)' }}>
+                        <p ref={refGermanWord} className='hidden wordsInside_Words_listedWord'> {props.german}</p>
+                    </div>
 
-                <div className="popup" onClick={() => PopUpEnglish()}>
-                    English
-                    <span className="popuptext" id="myPopupEnglish">{props.englishExample}</span>
-                </div>
-                <div className="popup" onClick={() => PopUpGerman()}>
-                    German
-                    <span className="popuptext" id="myPopupGerman">{props.germanExample}</span>
-                </div>
+                    <div className="popup" onClick={() => PopUpEnglish()}>
+                        English
+                        <span className="popuptext" id="myPopupEnglish">{props.englishExample}</span>
+                    </div>
+                    <div className="popup" onClick={() => PopUpGerman()}>
+                        German
+                        <span className="popuptext" id="myPopupGerman">{props.germanExample}</span>
+                    </div>
                 </>
             ) : (
                 <>
-                <p>{props.chooseListedLanguage}</p>
-                <div ref={refGerman} onClick={showGerman} className='div_style' style={{ backgroundColor: 'rgb(187, 196, 199)'}} >
-                    <p ref={refGermanWord} className='wordsInside_Words_listedWord'> {props.german}</p>
-                </div>
-                <div ref={refEnglish} onClick={showEnglish} className='div_style' style={{ backgroundColor: 'rgb(43, 167, 215)' }}>
-                    <p ref={refEnglishWord} className='hidden wordsInside_Words_listedWord'>{props.english}</p>
-                </div>
+                    <p>{props.chooseListedLanguage}</p>
+                    <p>{props.category}</p>
+                    <div ref={refGerman} onClick={showGerman} className='div_style' style={{ backgroundColor: 'rgb(187, 196, 199)' }} >
+                        <p ref={refGermanWord} className='wordsInside_Words_listedWord'> {props.german}</p>
+                    </div>
+                    <div ref={refEnglish} onClick={showEnglish} className='div_style' style={{ backgroundColor: 'rgb(43, 167, 215)' }}>
+                        <p ref={refEnglishWord} className='hidden wordsInside_Words_listedWord'>{props.english}</p>
+                    </div>
 
-                <div className="popup" onClick={() => PopUpGerman()}>
-                    German
-                    <span className="popuptext" id="myPopupGerman">{props.germanExample}</span>
-                </div>
-                <div className="popup" onClick={() => PopUpEnglish()}>
-                    English
-                    <span className="popuptext" id="myPopupEnglish">{props.englishExample}</span>
-                </div>
+                    <div className="popup" onClick={() => PopUpGerman()}>
+                        German
+                        <span className="popuptext" id="myPopupGerman">{props.germanExample}</span>
+                    </div>
+                    <div className="popup" onClick={() => PopUpEnglish()}>
+                        English
+                        <span className="popuptext" id="myPopupEnglish">{props.englishExample}</span>
+                    </div>
                 </>
             )}
         </div>
