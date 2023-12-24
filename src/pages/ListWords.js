@@ -112,8 +112,6 @@ export default function ListWords() {
           ))
           )}
       </div>
-          <p>{wordsFilteredByCategory.length}</p>
-          <p>{randomlengthOfWord}</p>
     </>
   );
 

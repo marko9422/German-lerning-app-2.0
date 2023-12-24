@@ -30,8 +30,6 @@ export default function Words_listedWord(props) {
         <div>
             {props.chooseListedLanguage === 'english' ? (
                 <>
-                    <p>{props.chooseListedLanguage}</p>
-                    <p>{props.category}</p>
                     <div ref={refEnglish} onClick={showEnglish} className='div_style' style={{ backgroundColor: 'rgb(187, 196, 199)' }}>
                         <p ref={refEnglishWord} className='wordsInside_Words_listedWord'>{props.english}</p>
                     </div>
@@ -50,8 +48,6 @@ export default function Words_listedWord(props) {
                 </>
             ) : (
                 <>
-                    <p>{props.chooseListedLanguage}</p>
-                    <p>{props.category}</p>
                     <div ref={refGerman} onClick={showGerman} className='div_style' style={{ backgroundColor: 'rgb(187, 196, 199)' }} >
                         <p ref={refGermanWord} className='wordsInside_Words_listedWord'> {props.german}</p>
                     </div>
