@@ -29,8 +29,6 @@ export default function ListWords() {
       setWordsFilteredByCategory(words)
     } else {
       setWordsFilteredByCategory(words.filter(word => word.category === selectedCategory));
-      // Set number 0 because if is rendered number bigger than words in filtered array word isn't returned.
-      setRandomlengthOfWord(0)
     }
   };
 // On load page wait till loading is from false true and execute useEffect and set words WordsFilteredByCategory. Load random number from all words to avoid return first word from database.
@@ -39,10 +37,10 @@ export default function ListWords() {
     setRandomlengthOfWord(Math.floor(Math.random() * words.length))
   }, [loading])
 
-// On redner app get random number from filtered array by category to return another random word.
+// On chage category, change wordsFilteredByCategory and execute useEffect, after that generate RandomlengthOfWord from wordsFilteredByCategory.
   useEffect(() => {
     setRandomlengthOfWord(Math.floor(Math.random() * wordsFilteredByCategory.length))
-  }, [])
+  },[wordsFilteredByCategory])
 
 
   const nextWorld = () => {
