@@ -21,8 +21,8 @@ export default function AddNewWord() {
         await addDoc(userCollectionRef, {
             english: inputs.englishShortText,
             german: inputs.germanShortText,
-            englishExample: inputs.englishExample,
-            germanExample: inputs.germanExample,
+            englishExample: inputs.englishExample || 'empty',
+            germanExample: inputs.germanExample || 'leer',
             englishScore: 10000,
             germanScore: 10000,
             visible: true,
@@ -51,7 +51,7 @@ export default function AddNewWord() {
         e.preventDefault();
         // FILL THE TEXT ALLERT IF IS IMPUT EMPTY.
         if (!inputs.englishShortText || !inputs.germanShortText) {
-            alert('Please fill in the text.');
+            alert('Please fill ENGLISH and GERMAN fields.');
             return;
         } else {
             saveIntoFirestore()
