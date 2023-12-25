@@ -1,11 +1,11 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import { auth } from "../../firebase/config";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../../context/AuthContext";
 import './SignIn.css';
-
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import ApiComponent from "../ApiComponent";
 
 const SignIn = () => {
 
@@ -15,7 +15,6 @@ const SignIn = () => {
   const navigateToSignUp = () => {
     navigate("/SignUp")
   }
-
 
   const [email, setEmail] = useState('test@test.com');
   const [password, setPassword] = useState('test123');
@@ -35,30 +34,27 @@ const SignIn = () => {
       });
   };
 
+  // const logout = (e) => {
+  //   e.preventDefault();
 
-  const logout = (e) => {
-    e.preventDefault();
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        dispatch({ type: "LOGOUT", payload: user })
-        navigate("/")
-      })
-      .catch((error) => {
-        // setError(true);
-      });
-  };
+  //   signInWithEmailAndPassword(auth, email, password)
+  //     .then((userCredential) => {
+  //       // Signed in
+  //       const user = userCredential.user;
+  //       dispatch({ type: "LOGOUT", payload: user })
+  //       navigate("/")
+  //     })
+  //     .catch((error) => {
+  //       // setError(true);
+  //     });
+  // };
 
   return (
     <>
       <Container>
         <Row >
           <Col className="header" style={{ display: 'flex', justifyContent: '' }}>
-            <div>
-              <p>here add funny API</p>
-            </div>
+            <ApiComponent></ApiComponent>
           </Col>
           <Col style={{ display: 'flex', justifyContent: 'right' }}>
             <div className="german-app-div">
