@@ -1,12 +1,15 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import { auth } from "../../firebase/config";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../../context/AuthContext";
+import './SignIn.css';
+
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 const SignIn = () => {
 
-  const {dispatch} = useContext(AuthContext)
+  const { dispatch } = useContext(AuthContext)
 
   const navigate = useNavigate();
   const navigateToSignUp = () => {
@@ -14,8 +17,8 @@ const SignIn = () => {
   }
 
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('test@test.com');
+  const [password, setPassword] = useState('test123');
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -24,7 +27,7 @@ const SignIn = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        dispatch({type:"LOGIN", payload:user})
+        dispatch({ type: "LOGIN", payload: user })
         navigate("/")
       })
       .catch((error) => {
@@ -40,7 +43,7 @@ const SignIn = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        dispatch({type:"LOGOUT", payload:user})
+        dispatch({ type: "LOGOUT", payload: user })
         navigate("/")
       })
       .catch((error) => {
@@ -50,32 +53,48 @@ const SignIn = () => {
 
   return (
     <>
+      <Container>
+        <Row >
+          <Col className="header" style={{ display: 'flex', justifyContent: '' }}>
+            <div>
+              <p>here add funny API</p>
+            </div>
+          </Col>
+          <Col style={{ display: 'flex', justifyContent: 'right' }}>
+            <div className="german-app-div">
+              <p>German</p>
+              <p>learning</p>
+              <p>APP</p>
+            </div>
+            <div className="form">
+              <Form onSubmit={handleLogin}>
+                <Form.Control
+                  className="mb-2"
+                  type="email"
+                  autoComplete="off"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                >
+                </Form.Control>
+                <Form.Control
+                  className="mb-2"
+                  type="password"
+                  autoComplete="off"
+                  aria-describedby="passwordHelpBlock"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                >
+                </Form.Control>
+                <Button variant="primary" type="submit">Log In</Button>
+                <Button variant="link" onClick={() => navigateToSignUp()}>Register</Button>
+              </Form>
+            </div>
+          </Col>
 
-      <div className="sign-in-container">
-        <form onSubmit={handleLogin}>
-          <h1>Log In to your Account</h1>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
-          <button type="submit">Log In</button>
-        </form>
-
-        <button onClick={() => navigateToSignUp()}>Register</button>
-        <p>test@test.com</p>
-        <p>test123</p>
-      </div>
-
-
-
+        </Row>
+      </Container>
     </>
   );
 };
