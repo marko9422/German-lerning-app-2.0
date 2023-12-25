@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import './SignIn.css';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import ApiComponent from "../ApiComponent";
+import CV from "../CV";
 
 const SignIn = () => {
 
@@ -53,9 +54,9 @@ const SignIn = () => {
     <>
       <Container>
         <Row >
-          <Col className="header" style={{ display: 'flex', justifyContent: '' }}>
+          {/* <Col className="header" style={{ display: 'flex', justifyContent: '' }}>
             <ApiComponent></ApiComponent>
-          </Col>
+          </Col> */}
           <Col style={{ display: 'flex', justifyContent: 'right' }}>
             <div className="german-app-div">
               <p>German</p>
@@ -88,8 +89,8 @@ const SignIn = () => {
               </Form>
             </div>
           </Col>
-
         </Row>
+        <CV></CV>
       </Container>
     </>
   );

@@ -25,6 +25,13 @@
     pointer-events: none;
   }
 
+  .technology_word{
+    font-weight: bold;
+  }
+
+  .project_section{
+    padding-top: 80px;
+  }
   /*////////////////////////////////////////////*/
   /*/////////// POP UP styles //////////////////*/
   /*////////////////////////////////////////////*/
@@ -89,4 +96,13 @@
 @keyframes fadeIn {
   from {opacity: 0;}
   to {opacity:1 ;}
+}
+
+
+/* responsivity *********************/
+/* gif jakubhanzl.com responzivity***/
+@media (max-width: 800px) {
+  .gif_video {
+    width: 100%; 
+  }
 }
