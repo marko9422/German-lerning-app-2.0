@@ -6,7 +6,7 @@ import ApiComponent from './ApiComponent';
 
 export default function CV() {
     return (
-        <Container>
+        <Container className='cv'>
             <Row style={{ textAlign: 'center' }}>
                 <Col>
                     <h2>MARKO ŠARČEVIČ</h2>
@@ -22,6 +22,11 @@ export default function CV() {
                     <h4 style={{ textAlign: 'center' }}>German learning web app</h4>
                     <div>
                         <p>
+                            You can logIn on the top. username: <span className='technology_word'>test@test.com</span> password: <span className='technology_word'>test123</span>.
+                            App contain Auth system from firebase, TinyMCE: WYSIWYG Editor to create Tables and texts, form to add words and examples.
+                            Tables, texts, words are editable,contain score system and example sentences.
+                        </p>
+                        <p>
                             Created personal German web aplication that I am using to learn german language. I used <span className='technology_word'>ReactJS</span> as
                             frontend, <span className='technology_word'>PHP</span> to comunicate with <span className='technology_word'>mySQL</span> database.
                         </p>
@@ -29,11 +34,6 @@ export default function CV() {
                             Created second version of German web aplication frontend in <span className='technology_word'>ReactJS</span>. Intead of
                             mySQL I am using <span className='technology_word'>firestore</span> from google as a database for data and authentication
                             system to register/login.Style is created mostly with <span className='technology_word'>Bootstrap</span>.
-                        </p>
-                        <p>
-                            You can logIn on the top. username: <span className='technology_word'>test@test.com</span> password: <span className='technology_word'>test123</span>.
-                            App contain Auth system from firebase, TinyMCE: WYSIWYG Editor to create Tables and texts, form to add words and examples.
-                            Tables, texts, words are editable,contain score system and example sentences.
                         </p>
                         <p>
                             <a target='_blank' href='https://github.com/marko9422/German-lerning-app-2.0'>Source code</a>
@@ -78,6 +78,32 @@ export default function CV() {
                             (Crowdsourced English-language online dictionary for slang words and phrases). You can type some word to the input and press button for result.
                         </p>
                         <ApiComponent></ApiComponent>
+                    </div>
+                </Col>
+            </Row>
+            <Row>
+                <Col className='project_section'>
+                    <h4 style={{ textAlign: 'center' }}>Python / selenium </h4>
+                    <div >
+                        <p>
+                            With <span className='technology_word'>python selenium</span>  I writed script to scrappe data from betting sites and saved data into <span className='technology_word'>SQL</span>  database. Then I compared data and try to find out what are the differences between
+                            companies.
+                        </p>
+                        <p>
+                            <a target='_blank' href='https://github.com/marko9422/betArbitrage'>Source code</a>
+                        </p>
+                    </div>
+                </Col>
+            </Row>
+            <Row>
+                <Col className='project_section'>
+                    {/* <h4 style={{ textAlign: 'center' }}>Python / selenium </h4> */}
+                    <div >
+                        <p>
+                            I am interested in Laravel PHP framework. Therefore I am trying to migrate my database from Firestore to MySQL and use Laravel framework as a back-end tehnology.
+                            I am also interested in React Native to build mobile app. Currently I am working on the app where I am using Typescrit, React Native, Laraval and MySQL. I am also interested into worrdpres 
+                            and e-commerce.
+                        </p>
                     </div>
                 </Col>
             </Row>
