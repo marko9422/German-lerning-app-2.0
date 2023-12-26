@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Form, Button } from 'react-bootstrap';
+import './ApiComponent.css'
 
 
 export default function ApiComponent() {
@@ -35,7 +36,7 @@ export default function ApiComponent() {
     }, [searchWord]);
 
     return (
-        <div>
+        <div className='API_form'>
             <Form onSubmit={handleSubmit}>
                 <Form.Control
                     className="mb-2"
@@ -48,9 +49,8 @@ export default function ApiComponent() {
                 </Form.Control>
                 <Button variant="primary" type="submit">GO look up word</Button>
             </Form>
-            <p>{result_word}</p>
-            <p>{result_definition}</p>
-            <p>{result_example}</p>
+            <p className='result_definition'><span className='description'>definition:</span> {result_definition}</p>
+            <p className='result_example'><span className='description'>example:</span>{result_example}</p>
         </div>
 
     )
