@@ -41,6 +41,18 @@
     padding: 10px;
     background-color: rgb(222, 222, 222);
   }
+
+  .lavinoffka_galery{
+    text-align: center;
+  }
+  .lavinoffka_picture{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .project_name{
+    color: #d31313;
+  }
   /*////////////////////////////////////////////*/
   /*/////////// POP UP styles //////////////////*/
   /*////////////////////////////////////////////*/

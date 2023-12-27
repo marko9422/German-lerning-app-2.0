@@ -2,6 +2,9 @@ import React from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import './styles.css'
 import videoGif from '../images/video.gif'
+import lavinoffka1 from '../images/lavinoffka1.png'
+import lavinoffka2 from '../images/lavinoffka2.png'
+import lavinoffka3 from '../images/lavinoffka3.png'
 import ApiComponent from './ApiComponent';
 
 export default function CV() {
@@ -19,7 +22,7 @@ export default function CV() {
             </Row>
             <Row>
                 <Col className='project_section' >
-                    <h4 style={{ textAlign: 'center' }}>German learning web app</h4>
+                    <h4 className='project_name' style={{ textAlign: 'center' }}>German learning web app</h4>
                     <div>
                         <p>
                             You can logIn on the top. username: <span className='technology_word'>test@test.com</span> password: <span className='technology_word'>test123</span>.
@@ -33,7 +36,7 @@ export default function CV() {
                         <p>
                             Created second version of German web aplication frontend in <span className='technology_word'>ReactJS</span>. Intead of
                             mySQL I am using <span className='technology_word'>firestore</span> from google as a database for data and authentication
-                            system to register/login.Style is created mostly with <span className='technology_word'>Bootstrap</span>.
+                            system to register/login.Style is created mostly with <span className='technology_word'>Bootstrap</span> but in not 100% finished because I am adding more features and I am planing change database.
                         </p>
                         <p>
                             <a target='_blank' href='https://github.com/marko9422/German-lerning-app-2.0'>Source code</a>
@@ -44,34 +47,43 @@ export default function CV() {
             </Row>
             <Row>
                 <Col className='project_section'>
-                    <h4 style={{ textAlign: 'center' }}>www.lavinoffka.cz</h4>
+                    <h4 className='project_name' style={{ textAlign: 'center' }}>www.lavinoffka.cz</h4>
                     <div>
                         <p>
                             Created <span className='technology_word'>e-commerce + blog website</span> in <span className='technology_word'>wordpress</span> with blocksy theme and WooCommerce lavinoffka.cz.
                             Added Product Gallery Slider for WooCommerce,Speed Optimizer,Elementor.
                         </p>
-
                     </div>
-
+                </Col>
+            </Row>
+            <Row className='lavinoffka_gallery'>
+                <Col lg="4">
+                    <img className='lavinoffka_picture' src={lavinoffka1} alt="Image 1" />
+                </Col>
+                <Col lg="4">
+                    <img className='lavinoffka_picture' src={lavinoffka2} alt="Image 2" />
+                </Col>
+                <Col lg="4">
+                    <img className='lavinoffka_picture' src={lavinoffka3} alt="Image 3" />
                 </Col>
             </Row>
             <Row>
-                <Col className='project_section'>
-                    <h4 style={{ textAlign: 'center' }}>www.jakubhanzl.com</h4>
+                <Col xs={12} className='project_section'>
+                    <h4 className='project_name' style={{ textAlign: 'center' }}>www.jakubhanzl.com</h4>
                     <div >
                         <p>
                             Created presentation website page in <span className='technology_word'>HTML, CSS ,
                                 JavaScript, jQuery</span>.
                         </p>
-                        <div style={{ textAlign: 'center', margin: '0 auto' }}>
-                            <img className='gif_video' src={videoGif}></img>
-                        </div>
                     </div>
+                </Col>
+                <Col style={{ textAlign: 'center', margin: '0 auto' }}>
+                    <img className='gif_video' src={videoGif}></img>
                 </Col>
             </Row>
             <Row>
                 <Col className='project_section'>
-                    <h4 style={{ textAlign: 'center' }}>API </h4>
+                    <h4 className='project_name' style={{ textAlign: 'center' }}>API </h4>
                     <div >
                         <p>
                             Created <span className='technology_word'>ReactJS</span> component where I fetch <span className='technology_word'>API</span> from Urban Dictionary.
@@ -83,7 +95,7 @@ export default function CV() {
             </Row>
             <Row>
                 <Col className='project_section'>
-                    <h4 style={{ textAlign: 'center' }}>Python / selenium </h4>
+                    <h4 className='project_name' style={{ textAlign: 'center' }}>Python / selenium </h4>
                     <div >
                         <p>
                             With <span className='technology_word'>python selenium</span>  I writed script to scrappe data from betting sites and saved data into <span className='technology_word'>SQL</span>  database. Then I compared data and try to find out what are the differences between
@@ -101,7 +113,7 @@ export default function CV() {
                     <div >
                         <p>
                             I am interested in Laravel PHP framework. Therefore I am trying to migrate my database from Firestore to MySQL and use Laravel framework as a back-end tehnology.
-                            I am also interested in React Native to build mobile app. Currently I am working on the app where I am using Typescrit, React Native, Laraval and MySQL. I am also interested into worrdpres 
+                            I am also interested in React Native to build mobile app. Currently I am working on the app where I am using Typescrit, React Native, Laraval and MySQL. I am also interested into worrdpres
                             and e-commerce.
                         </p>
                     </div>
