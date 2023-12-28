@@ -28,9 +28,15 @@ export default function ApiComponent() {
             };
             const response = await fetch(url, options);
             const result = await response.json();
-            setResult_definition(result.list[0]['definition']);
-            setResult_example(result.list[0]['example']);
-            setResult_word(result.list[0]['word']);
+            if (result.list && result.list.length > 0 && result.list[0]['definition'] !== undefined) {
+                setResult_definition(result.list[0]['definition']);
+                setResult_example(result.list[0]['example']);
+                setResult_word(result.list[0]['word']);
+            } else {
+                setResult_definition('do not exist');
+                setResult_example('do not exist');
+                setResult_word('do not exist');
+            }
         }
         fetchAPI()
     }, [searchWord]);
