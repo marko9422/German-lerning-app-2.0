@@ -65,19 +65,19 @@ export default function CV() {
                         </div>
 
                     </Col>
-                    <Row className='lavinoffka_gallery'>
-                        <Col lg="4">
-                            <img className='lavinoffka_picture' src={germanapp1} alt="Image 1" onClick={openPicture} />
-                            <p>TinyMCE: WYSIWYG Editor</p>
-                        </Col>
-                        <Col lg="4">
-                            <img className='lavinoffka_picture' src={germanapp2} alt="Image 2" onClick={openPicture} />
-                        </Col>
-                        <Col lg="4">
-                            <img className='lavinoffka_picture' src={germanapp3} alt="Image 3" onClick={openPicture} />
-                            <p>Firestore database</p>
-                        </Col>
-                    </Row>
+                </Row>
+                <Row className='lavinoffka_gallery'>
+                    <Col lg="4">
+                        <img className='lavinoffka_picture' src={germanapp1} alt="Image 1" onClick={openPicture} />
+                        <p>TinyMCE: WYSIWYG Editor</p>
+                    </Col>
+                    <Col lg="4">
+                        <img className='lavinoffka_picture' src={germanapp2} alt="Image 2" onClick={openPicture} />
+                    </Col>
+                    <Col lg="4">
+                        <img className='lavinoffka_picture' src={germanapp3} alt="Image 3" onClick={openPicture} />
+                        <p>Firestore database</p>
+                    </Col>
                 </Row>
                 <Row>
                     <Col className='project_section'>
@@ -92,13 +92,13 @@ export default function CV() {
                 </Row>
                 <Row className='lavinoffka_gallery'>
                     <Col lg="4">
-                        <img className='lavinoffka_picture' src={lavinoffka1} alt="Image 1" />
+                        <img className='lavinoffka_picture' src={lavinoffka1} onClick={openPicture} alt="Image 1" />
                     </Col>
                     <Col lg="4">
-                        <img className='lavinoffka_picture' src={lavinoffka2} alt="Image 2" />
+                        <img className='lavinoffka_picture' src={lavinoffka2} onClick={openPicture} alt="Image 2" />
                     </Col>
                     <Col lg="4">
-                        <img className='lavinoffka_picture' src={lavinoffka3} alt="Image 3" />
+                        <img className='lavinoffka_picture' src={lavinoffka3} onClick={openPicture} alt="Image 3" />
                     </Col>
                 </Row>
                 <Row>
