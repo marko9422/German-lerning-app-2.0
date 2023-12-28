@@ -25,6 +25,34 @@
     pointer-events: none;
   }
 
+  .technology_word{
+    font-weight: bold;
+  }
+
+  .project_section{
+    padding-top: 80px;
+  }
+
+  .cv{
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 10px;
+    background-color: rgb(222, 222, 222);
+  }
+
+  .lavinoffka_galery{
+    text-align: center;
+  }
+  .lavinoffka_picture{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .project_name{
+    color: #d31313;
+  }
   /*////////////////////////////////////////////*/
   /*/////////// POP UP styles //////////////////*/
   /*////////////////////////////////////////////*/
@@ -89,4 +117,13 @@
 @keyframes fadeIn {
   from {opacity: 0;}
   to {opacity:1 ;}
+}
+
+
+/* responsivity *********************/
+/* gif jakubhanzl.com responzivity***/
+@media (max-width: 800px) {
+  .gif_video {
+    width: 100%; 
+  }
 }
