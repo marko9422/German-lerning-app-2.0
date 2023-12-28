@@ -5,9 +5,18 @@ import videoGif from '../images/video.gif'
 import lavinoffka1 from '../images/lavinoffka1.png'
 import lavinoffka2 from '../images/lavinoffka2.png'
 import lavinoffka3 from '../images/lavinoffka3.png'
+import germanapp1 from '../images/germanapp1.png'
+import germanapp2 from '../images/germanapp2.png'
+import germanapp3 from '../images/germanapp3.png'
 import ApiComponent from './ApiComponent';
 
 export default function CV() {
+
+    const openPicture = (event) => {
+        const pictureSrc = event.target.src;
+        window.open(pictureSrc, '_blank');
+    }
+
     return (
         <Container className='cv'>
             <Row style={{ textAlign: 'center' }}>
@@ -44,6 +53,19 @@ export default function CV() {
                     </div>
 
                 </Col>
+                <Row className='lavinoffka_gallery'>
+                <Col lg="4">
+                    <img className='lavinoffka_picture' src={germanapp1} alt="Image 1" onClick={openPicture} />
+                    <p>TinyMCE: WYSIWYG Editor</p>
+                </Col>
+                <Col lg="4">
+                    <img className='lavinoffka_picture' src={germanapp2} alt="Image 2"  onClick={openPicture}/>
+                </Col>
+                <Col lg="4">
+                    <img className='lavinoffka_picture' src={germanapp3} alt="Image 3"  onClick={openPicture}/>
+                    <p>Firestore database</p>
+                </Col>
+            </Row>
             </Row>
             <Row>
                 <Col className='project_section'>
