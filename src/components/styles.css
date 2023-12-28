@@ -46,6 +46,7 @@
     text-align: center;
   }
   .lavinoffka_picture{
+    cursor: zoom-in;
     width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -57,19 +58,28 @@
   /*/////////// CV_galerry style ///////////////*/
   /*////////////////////////////////////////////*/
   .div {
+    cursor: zoom-out;
     text-align: center;
     background: rgb(222, 222, 222);
     padding: 10px;
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
+    height: 80vh;
+    width: 80vw;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-size: 80% auto;
     background-repeat: no-repeat;
     background-position: center center;
+    display: fixed;
+    border: 1px solid black;
+    border-radius: 15px;
+    transition: opacity 0.5s ease-in-out; /* Add transition for opacity */
+    opacity: 0; /* Set initial opacity to 0 */
   }
-  
+  .div.show {
+    opacity: 1; /* Set opacity to 1 for the fade-in effect */
+  }
   .closetext {
     color: red;
     font-size: 70px;
@@ -79,9 +89,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-
-
-
 
 
   /*////////////////////////////////////////////*/

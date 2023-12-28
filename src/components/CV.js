@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import './styles.css'
 import videoGif from '../images/video.gif'
@@ -15,7 +15,6 @@ export default function CV() {
     const [openGallery, setOpenGallery] = useState(false)
     const [pictureInGallery, setPictureInGallery] = useState('')
 
-
     const openPicture = (event) => {
         setPictureInGallery(event.target.src)
         setOpenGallery(true)
@@ -24,13 +23,24 @@ export default function CV() {
         setOpenGallery(false)
     }
 
+    // Create animation. useEffec create delay to add class show which create fadein animation.
+    useEffect(() => {
+        if (openGallery) {
+            const timeoutId = setTimeout(() => {
+                document.querySelector('.div').classList.add('show');
+            }, 50);
+
+            return () => clearTimeout(timeoutId);
+        }
+    }, [openGallery]);
+    
     return (
         <>
             {openGallery ? <div onClick={closePicture} className='div' style={{ backgroundImage: `url(${pictureInGallery})` }}>
                 <p className='closetext'>Click to close.</p>
             </div> : null}
 
-            <Container style={{ display: openGallery ? 'none' : 'block' }} className='cv'>
+            <Container className='cv'>
                 <Row style={{ textAlign: 'center' }}>
                     <Col>
                         <h2>MARKO ŠARČEVIČ</h2>
