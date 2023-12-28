@@ -53,6 +53,36 @@
   .project_name{
     color: #d31313;
   }
+    /*//////////////////////////////////////////*/
+  /*/////////// CV_galerry style ///////////////*/
+  /*////////////////////////////////////////////*/
+  .div {
+    text-align: center;
+    background: rgb(222, 222, 222);
+    padding: 10px;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: 80% auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  
+  .closetext {
+    color: red;
+    font-size: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+
+
+
+
   /*////////////////////////////////////////////*/
   /*/////////// POP UP styles //////////////////*/
   /*////////////////////////////////////////////*/
