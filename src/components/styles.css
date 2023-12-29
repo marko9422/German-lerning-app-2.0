@@ -165,3 +165,8 @@
     width: 100%; 
   }
 }
+@media (max-width: 991px) {
+  .lavinoffka_picture{
+    cursor: default;
+  }
+}

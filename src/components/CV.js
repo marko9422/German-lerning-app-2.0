@@ -17,7 +17,11 @@ export default function CV() {
 
     const openPicture = (event) => {
         setPictureInGallery(event.target.src)
-        setOpenGallery(true)
+        if (window.innerWidth > 991) {
+            setOpenGallery(true)
+
+        }
+        console.log(window.innerWidth)
     }
     const closePicture = () => {
         setOpenGallery(false)
