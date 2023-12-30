@@ -21,7 +21,6 @@ export default function CV() {
             setOpenGallery(true)
 
         }
-        console.log(window.innerWidth)
     }
     const closePicture = () => {
         setOpenGallery(false)

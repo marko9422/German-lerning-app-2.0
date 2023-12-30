@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { db } from '../firebase/config'
 import { collection, addDoc } from 'firebase/firestore';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -6,29 +6,36 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NavbarMenu from '../components/NavbarMenu';
 import useFetchCategories from '../hooks/useFetchCategories';
+import useGetUserFromLocalStore from '../hooks/useGetUserFromLocalStore';
+
 
 export default function AddNewWord() {
 
+    const [userFromLocalStorage, emailWhichIsAsAGuess] = useGetUserFromLocalStore()
     const [loadingCategories, category] = useFetchCategories()
     const [inputs, setInputs] = useState({});
     const [newCategory, setNewCategory] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('test')
 
-    // const editorRef = useRef(null);
 
     const userCollectionRef = collection(db, 'words')
     const saveIntoFirestore = async () => {
-        await addDoc(userCollectionRef, {
-            english: inputs.englishShortText,
-            german: inputs.germanShortText,
-            englishExample: inputs.englishExample || 'empty',
-            germanExample: inputs.germanExample || 'leer',
-            englishScore: 10000,
-            germanScore: 10000,
-            visible: true,
-            category: selectedCategory
-        });
-    }
+        if (userFromLocalStorage.email !== emailWhichIsAsAGuess) {
+            await addDoc(userCollectionRef, {
+                english: inputs.englishShortText,
+                german: inputs.germanShortText,
+                englishExample: inputs.englishExample || 'empty',
+                germanExample: inputs.germanExample || 'leer',
+                englishScore: 10000,
+                germanScore: 10000,
+                visible: true,
+                category: selectedCategory
+            });
+        } else {
+            console.log('not saved because test@test.com')
+        }
+    } 
+
 
     const categories_of_wordsCollectionRef = collection(db, 'categories_of_words')
     const saveCategoryIntoFirestore = async () => {
@@ -61,9 +68,14 @@ export default function AddNewWord() {
 
     const handleNewCategory = (e) => {
         e.preventDefault();
-        console.log(newCategory)
-        saveCategoryIntoFirestore()
-        setNewCategory('')
+        if (userFromLocalStorage.email !== emailWhichIsAsAGuess) {
+            console.log(newCategory)
+            saveCategoryIntoFirestore()
+            setNewCategory('')
+        } else {
+            console.log('not saved because test@test.com')
+            setNewCategory('')
+        }
     }
 
 
