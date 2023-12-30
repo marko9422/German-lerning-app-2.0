@@ -1,24 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react';
 import './styles.css'
 import { db } from '../firebase/config'
 import { updateDoc, doc } from 'firebase/firestore';
 import Button from 'react-bootstrap/Button';
+import useGetUserFromLocalStore from '../hooks/useGetUserFromLocalStore';
 
 
 export default function CorrectGrammarButton(props) {
 
+    const [userFromLocalStorage, emailWhichIsAsAGuess] = useGetUserFromLocalStore()
+
     const correct = async () => {
-        const textareaDoc = doc(db, 'textarea', props.id)
-        const updateTextarea = { score: props.score + 1 }
-        await updateDoc(textareaDoc, updateTextarea);
+        if (userFromLocalStorage.email !== emailWhichIsAsAGuess){
+            const textareaDoc = doc(db, 'textarea', props.id)
+            const updateTextarea = { score: props.score + 1 }
+            await updateDoc(textareaDoc, updateTextarea);
+        } else {
+            console.log('not saved because test@test.com')
+        }
         const targetDiv = document.querySelector('.correctWrong');
         targetDiv.classList.add("unclicable");
     }
 
     const wrong = async () => {
-        const textareaDoc = doc(db, 'textarea', props.id)
-        const updateTextarea = { score: props.score - 1 }
-        await updateDoc(textareaDoc, updateTextarea);
+        if (userFromLocalStorage.email !== emailWhichIsAsAGuess){
+            const textareaDoc = doc(db, 'textarea', props.id)
+            const updateTextarea = { score: props.score - 1 }
+            await updateDoc(textareaDoc, updateTextarea);
+        } else {
+            console.log('not saved because test@test.com')
+        }
         const targetDiv = document.querySelector('.correctWrong');
         targetDiv.classList.add("unclicable");
     }

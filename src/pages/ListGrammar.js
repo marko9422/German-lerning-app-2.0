@@ -62,7 +62,6 @@ export default function ListGrammar() {
                         ) : (
                             (index === randomlengthOfGrammar) ? (
                                 <div key={id}>
-                                    <p>{id}</p>
                                     <ShowGrammar answer={answer}></ShowGrammar>
                                     <Button variant="warning" onClick={() => editGrammar(id)}>EDIT</Button>
                                     <CorrectGrammarButton id={id} score={score} />
@@ -71,7 +70,6 @@ export default function ListGrammar() {
                             ) : (typeof currentlyEditing === 'number' && index === currentlyEditing) ? (
                                 
                                 <div key={id}>
-                                    <p>{id}</p>
                                     <ShowGrammar answer={answer}></ShowGrammar>
                                     <Button variant="warning" onClick={() => editGrammar(id)}>EDIT</Button>
                                     <CorrectGrammarButton id={id} score={score} />
