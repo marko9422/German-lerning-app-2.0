@@ -32,7 +32,7 @@ export default function AddNewWord() {
                 category: selectedCategory
             });
         } else {
-            console.log('not saved because test@test.com')
+            alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
         }
     } 
 
@@ -73,7 +73,7 @@ export default function AddNewWord() {
             saveCategoryIntoFirestore()
             setNewCategory('')
         } else {
-            console.log('not saved because test@test.com')
+            alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
             setNewCategory('')
         }
     }

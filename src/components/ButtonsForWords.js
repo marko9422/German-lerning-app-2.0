@@ -23,7 +23,7 @@ export default function ButtonsForWords(props) {
                 await updateDoc(textareaDoc, updateTextarea);
             }
         } else {
-            console.log('not saved because test@test.com')
+            alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
         }
 
         const targetDiv = document.querySelector('.correctWrong');

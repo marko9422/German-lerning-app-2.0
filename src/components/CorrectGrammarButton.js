@@ -16,7 +16,7 @@ export default function CorrectGrammarButton(props) {
             const updateTextarea = { score: props.score + 1 }
             await updateDoc(textareaDoc, updateTextarea);
         } else {
-            console.log('not saved because test@test.com')
+            alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
         }
         const targetDiv = document.querySelector('.correctWrong');
         targetDiv.classList.add("unclicable");
@@ -28,7 +28,7 @@ export default function CorrectGrammarButton(props) {
             const updateTextarea = { score: props.score - 1 }
             await updateDoc(textareaDoc, updateTextarea);
         } else {
-            console.log('not saved because test@test.com')
+            alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
         }
         const targetDiv = document.querySelector('.correctWrong');
         targetDiv.classList.add("unclicable");

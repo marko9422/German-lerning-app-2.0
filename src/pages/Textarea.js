@@ -19,7 +19,7 @@ export default function Textarea({ initialValue }) {
             setTextarea('')
             setLoadingAfterPost(true)
         } else {
-            console.log('not saved because test@test.com')
+            alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
         }
     }
 

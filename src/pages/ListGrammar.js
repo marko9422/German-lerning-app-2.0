@@ -31,7 +31,7 @@ export default function ListGrammar() {
             setEditorToeditCurrentGrammar(true)
             setCurrentlyEditing(randomlengthOfGrammar)
         } else {
-            console.log('not saved because test@test.com')
+            alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
         }
     }
     // This function is helping to sent false from EditGrammar in this parent component.
