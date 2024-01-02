@@ -58,6 +58,9 @@ body{
   .project_name{
     color: #d31313;
   }
+  .gif_video_zoom{
+    cursor: zoom-in;
+  }
     /*//////////////////////////////////////////*/
   /*/////////// CV_galerry style ///////////////*/
   /*////////////////////////////////////////////*/
@@ -166,7 +169,7 @@ body{
 /* gif jakubhanzl.com responzivity***/
 @media (max-width: 800px) {
   .gif_video {
-    width: 100%; 
+    width: 100%;
   }
 }
 @media (max-width: 991px) {

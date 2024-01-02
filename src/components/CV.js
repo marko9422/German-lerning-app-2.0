@@ -125,7 +125,7 @@ export default function CV() {
                         </div>
                     </Col>
                     <Col style={{ textAlign: 'center', margin: '0 auto' }}>
-                        <img className='gif_video' src={videoGif}></img>
+                        <img className='gif_video gif_video_zoom' src={videoGif} onClick={openPicture}></img>
                     </Col>
                 </Row>
                 <Row>
