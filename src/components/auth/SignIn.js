@@ -1,11 +1,13 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import React, { useState, useContext,useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { auth } from "../../firebase/config";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../../context/AuthContext";
 import './SignIn.css';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import CV from "../CV";
+import { collection, addDoc,serverTimestamp  } from 'firebase/firestore';
+import { db } from '../../firebase/config'
 
 const SignIn = () => {
 
@@ -32,7 +34,18 @@ const SignIn = () => {
       .catch((error) => {
         // setError(true);
       });
+
+    saveCategoryIntoFirestore()
+
   };
+
+  // Save log in into firebase.
+  const login = collection(db, 'login')
+  const saveCategoryIntoFirestore = async () => {
+    await addDoc(login, {
+      time: serverTimestamp(),
+    });
+  }
 
   return (
     <>

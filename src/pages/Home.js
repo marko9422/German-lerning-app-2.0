@@ -14,11 +14,11 @@ function Home() {
                 // https://firebase.google.com/docs/reference/js/firebase.User
                 const uid = user.uid;
                 // ...
-                console.log("uid", uid)
+                // console.log("uid", uid)
             } else {
                 // User is signed out
                 // ...
-                console.log("user is logged out")
+                // console.log("user is logged out")
             }
         });
 
