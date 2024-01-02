@@ -4,18 +4,23 @@ import { db } from '../firebase/config'
 import { collection, addDoc } from 'firebase/firestore';
 import NavbarMenu from '../components/NavbarMenu';
 import Button from 'react-bootstrap/Button';
+import useGetUserFromLocalStore from '../hooks/useGetUserFromLocalStore';
 
 export default function Textarea({ initialValue }) {
 
+    const [userFromLocalStorage, emailWhichIsAsAGuess] = useGetUserFromLocalStore()
     const [textarea, setTextarea] = useState(initialValue ?? '');
     const [loadingAfterPost, setLoadingAfterPost] = useState(true)
 
     const saveIntoFirestore = async () => {
-        setLoadingAfterPost(false)
-        await addDoc(userCollectionRef, { answer: textarea, score:10000,visible:true });
-        setTextarea('')
-        setLoadingAfterPost(true)
-
+        if (userFromLocalStorage.email !== emailWhichIsAsAGuess){
+            setLoadingAfterPost(false)
+            await addDoc(userCollectionRef, { answer: textarea, score:10000,visible:true });
+            setTextarea('')
+            setLoadingAfterPost(true)
+        } else {
+            console.log('not saved because test@test.com')
+        }
     }
 
     // tinyMCE Editor things.

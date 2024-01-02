@@ -5,10 +5,12 @@ import CorrectGrammarButton from '../components/CorrectGrammarButton';
 import ShowGrammar from '../components/ShowGrammar';
 import NavbarMenu from '../components/NavbarMenu';
 import Button from 'react-bootstrap/Button';
+import useGetUserFromLocalStore from '../hooks/useGetUserFromLocalStore';
 
 
 export default function ListGrammar() {
 
+    const [userFromLocalStorage, emailWhichIsAsAGuess] = useGetUserFromLocalStore()
     const [loading, grammar] = useFetchGrammar()
     const [edit, setEdit] = useState('')
     const [openEditorToEditCurrentGrammar, setEditorToeditCurrentGrammar] = useState(false)
@@ -24,9 +26,13 @@ export default function ListGrammar() {
     }
 
     const editGrammar = (id) => {
-        setEdit(id)
-        setEditorToeditCurrentGrammar(true)
-        setCurrentlyEditing(randomlengthOfGrammar)
+        if (userFromLocalStorage.email !== emailWhichIsAsAGuess){
+            setEdit(id)
+            setEditorToeditCurrentGrammar(true)
+            setCurrentlyEditing(randomlengthOfGrammar)
+        } else {
+            console.log('not saved because test@test.com')
+        }
     }
     // This function is helping to sent false from EditGrammar in this parent component.
     const callback = (value) => {
@@ -56,7 +62,6 @@ export default function ListGrammar() {
                         ) : (
                             (index === randomlengthOfGrammar) ? (
                                 <div key={id}>
-                                    <p>{id}</p>
                                     <ShowGrammar answer={answer}></ShowGrammar>
                                     <Button variant="warning" onClick={() => editGrammar(id)}>EDIT</Button>
                                     <CorrectGrammarButton id={id} score={score} />
@@ -65,7 +70,6 @@ export default function ListGrammar() {
                             ) : (typeof currentlyEditing === 'number' && index === currentlyEditing) ? (
                                 
                                 <div key={id}>
-                                    <p>{id}</p>
                                     <ShowGrammar answer={answer}></ShowGrammar>
                                     <Button variant="warning" onClick={() => editGrammar(id)}>EDIT</Button>
                                     <CorrectGrammarButton id={id} score={score} />
@@ -82,10 +86,3 @@ export default function ListGrammar() {
     );
 
 }
-
-// const styles = {
-//     grammarContainer: {
-//         border: '2px solid black',
-//         margin: '10px',
-//     }
-// };

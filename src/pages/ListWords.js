@@ -7,11 +7,13 @@ import NavbarMenu from '../components/NavbarMenu';
 import Button from 'react-bootstrap/Button';
 import useFetchCategories from '../hooks/useFetchCategories';
 import Form from 'react-bootstrap/Form';
+import useGetUserFromLocalStore from '../hooks/useGetUserFromLocalStore';
 
 
 
 export default function ListWords() {
 
+  const [userFromLocalStorage, emailWhichIsAsAGuess] = useGetUserFromLocalStore()
   const [loading, words] = useFetchWords()
   const [chooseListedLanguage, setChooseListedLanguage] = useState('english')
   const [editingThisWords, setEditingThisWords] = useState(false)
@@ -52,7 +54,11 @@ export default function ListWords() {
   }
 
   const editWords = (id) => {
-    setEditingThisWords(true)
+    if (userFromLocalStorage.email !== emailWhichIsAsAGuess){
+      setEditingThisWords(true)
+    } else {
+      console.log('not saved because test@test.com')
+    }
   }
 
   // Set listed language of the first words.
