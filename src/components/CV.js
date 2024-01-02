@@ -36,7 +36,7 @@ export default function CV() {
             return () => clearTimeout(timeoutId);
         }
     }, [openGallery]);
-    
+
     return (
         <>
             {openGallery ? <div onClick={closePicture} className='div' style={{ backgroundImage: `url(${pictureInGallery})` }}>
@@ -59,7 +59,7 @@ export default function CV() {
                         <h4 className='project_name' style={{ textAlign: 'center' }}>German learning web app</h4>
                         <div>
                             <p>
-                                You can logIn on the top. username: <span className='technology_word'>test@test.com</span> password: <span className='technology_word'>test123</span>.
+                                You can login on the top. username: <span className='technology_word'>test@test.com</span> password: <span className='technology_word'>test123</span>.
                                 App contain Auth system from firebase, TinyMCE: WYSIWYG Editor to create Tables and texts, form to add words and examples.
                                 Tables, texts, words are editable,contain score system and example sentences.
                             </p>
@@ -70,7 +70,7 @@ export default function CV() {
                             <p>
                                 Created second version of German web aplication frontend in <span className='technology_word'>ReactJS</span>. Intead of
                                 mySQL I am using <span className='technology_word'>firestore</span> from google as a database for data and authentication
-                                system to register/login.Style is created mostly with <span className='technology_word'>Bootstrap</span> but in not 100% finished because I am adding more features and I am planing change database.
+                                system to register/login.Style is created mostly with <span className='technology_word'>Bootstrap</span> but in not 100% finished because I am adding more features and I am planing migrate database from firebase to mySQL using laravel.
                             </p>
                             <p>
                                 <a target='_blank' href='https://github.com/marko9422/German-lerning-app-2.0'>Source code</a>
@@ -159,9 +159,9 @@ export default function CV() {
                         {/* <h4 style={{ textAlign: 'center' }}>Python / selenium </h4> */}
                         <div >
                             <p>
-                                I am interested in Laravel PHP framework. Therefore I am trying to migrate my database from Firestore to MySQL and use Laravel framework as a back-end tehnology.
-                                I am also interested in React Native to build mobile app. Currently I am working on the app where I am using Typescrit, React Native, Laraval and MySQL. I am also interested into worrdpres
-                                and e-commerce.
+                                My next interests are Laravel PHP framework. I am trying to migrate my database from Firestore to
+                                MySQL and use Laravel framework as a back-end tehnology.
+                                Also interested in React Native and Typescript to be abble build mobile apps. MY next interast is Wordpress CMD.
                             </p>
                         </div>
                     </Col>
