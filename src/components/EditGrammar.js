@@ -22,7 +22,7 @@ export default function EditGrammar(props) {
 
 
     // tinyMCE Editor things.
-    const userCollectionRef = collection(db, 'textarea')
+    // const userCollectionRef = collection(db, 'textarea')
     useEffect(() => setTextarea(props.initialValue ?? ''), [props.initialValue]);
     const editorRef = useRef(null);
 

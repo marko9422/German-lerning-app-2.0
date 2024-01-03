@@ -1,5 +1,5 @@
 import { db } from '../firebase/config'
-import React, { useState } from 'react';
+import React from 'react';
 import { updateDoc, doc } from 'firebase/firestore';
 import Button from 'react-bootstrap/Button';
 import './styles.css';
@@ -13,7 +13,7 @@ export default function ButtonsForWords(props) {
 
     const correct = async () => {
         if (userFromLocalStorage.email !== emailWhichIsAsAGuess) {
-            if (props.chooseListedLanguage == 'english') {
+            if (props.chooseListedLanguage === 'english') {
                 const textareaDoc = doc(db, 'words', props.id)
                 const updateTextarea = { englishScore: props.englishScore + 1 }
                 await updateDoc(textareaDoc, updateTextarea);
@@ -32,7 +32,7 @@ export default function ButtonsForWords(props) {
 
     const wrong = async () => {
         if (userFromLocalStorage.email !== emailWhichIsAsAGuess) {
-            if (props.chooseListedLanguage == 'english') {
+            if (props.chooseListedLanguage === 'english') {
                 const textareaDoc = doc(db, 'words', props.id)
                 const updateTextarea = { englishScore: props.englishScore - 1 }
                 await updateDoc(textareaDoc, updateTextarea);

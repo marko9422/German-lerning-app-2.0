@@ -14,8 +14,8 @@ export default function AddNewWord(props) {
         germanExample: props.germanExample || '',
     });
 
-    const userCollectionRef = collection(db, 'words')
-    const editorRef = useRef(null);
+    // const userCollectionRef = collection(db, 'words')
+    // const editorRef = useRef(null);
 
     const editWordsInsideDatabase = async () => {
         const textareaDoc = doc(db, 'words', props.id)

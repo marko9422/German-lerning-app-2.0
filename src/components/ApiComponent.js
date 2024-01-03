@@ -7,7 +7,6 @@ export default function ApiComponent() {
 
     const [lookUpWord, setLookUpWord] = useState('API')
     const [searchWord, setSearchWord] = useState('')
-    const [result_word, setResult_word] = useState('')
     const [result_definition, setResult_definition] = useState('')
     const [result_example, setResult_example] = useState('')
 
@@ -31,11 +30,9 @@ export default function ApiComponent() {
             if (result.list && result.list.length > 0 && result.list[0]['definition'] !== undefined) {
                 setResult_definition(result.list[0]['definition']);
                 setResult_example(result.list[0]['example']);
-                setResult_word(result.list[0]['word']);
             } else {
                 setResult_definition('do not exist');
                 setResult_example('do not exist');
-                setResult_word('do not exist');
             }
         }
         fetchAPI()

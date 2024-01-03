@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import './styles.css'
 import videoGif from '../images/video.gif'
 import lavinoffka1 from '../images/lavinoffka1.png'
@@ -73,7 +73,9 @@ export default function CV() {
                                 system to register/login.Style is created mostly with <span className='technology_word'>Bootstrap</span> but in not 100% finished because I am adding more features and I am planing migrate database from firebase to mySQL using laravel.
                             </p>
                             <p>
-                                <a target='_blank' href='https://github.com/marko9422/German-lerning-app-2.0'>Source code</a>
+                                <a href='https://github.com/marko9422/German-lerning-app-2.0' target='_blank' rel='noopener noreferrer'>
+                                    Source code
+                                </a>
                             </p>
                         </div>
 
@@ -81,14 +83,14 @@ export default function CV() {
                 </Row>
                 <Row className='lavinoffka_gallery'>
                     <Col lg="4">
-                        <img className='lavinoffka_picture' src={germanapp1} alt="Image 1" onClick={openPicture} />
+                        <img className='lavinoffka_picture' src={germanapp1} alt="germanapp1" onClick={openPicture} />
                         <p>TinyMCE: WYSIWYG Editor</p>
                     </Col>
                     <Col lg="4">
-                        <img className='lavinoffka_picture' src={germanapp2} alt="Image 2" onClick={openPicture} />
+                        <img className='lavinoffka_picture' src={germanapp2} alt="germanapp2" onClick={openPicture} />
                     </Col>
                     <Col lg="4">
-                        <img className='lavinoffka_picture' src={germanapp3} alt="Image 3" onClick={openPicture} />
+                        <img className='lavinoffka_picture' src={germanapp3} alt="germanapp3" onClick={openPicture} />
                         <p>Firestore database</p>
                     </Col>
                 </Row>
@@ -105,13 +107,13 @@ export default function CV() {
                 </Row>
                 <Row className='lavinoffka_gallery'>
                     <Col lg="4">
-                        <img className='lavinoffka_picture' src={lavinoffka1} onClick={openPicture} alt="Image 1" />
+                        <img className='lavinoffka_picture' src={lavinoffka1} onClick={openPicture} alt="lavinoffka1" />
                     </Col>
                     <Col lg="4">
-                        <img className='lavinoffka_picture' src={lavinoffka2} onClick={openPicture} alt="Image 2" />
+                        <img className='lavinoffka_picture' src={lavinoffka2} onClick={openPicture} alt="lavinoffka2" />
                     </Col>
                     <Col lg="4">
-                        <img className='lavinoffka_picture' src={lavinoffka3} onClick={openPicture} alt="Image 3" />
+                        <img className='lavinoffka_picture' src={lavinoffka3} onClick={openPicture} alt="lavinoffka3" />
                     </Col>
                 </Row>
                 <Row>
@@ -149,7 +151,10 @@ export default function CV() {
                                 companies.
                             </p>
                             <p>
-                                <a target='_blank' href='https://github.com/marko9422/betArbitrage'>Source code</a>
+                                <a href='https://github.com/marko9422/betArbitrage' target='_blank' rel='noopener noreferrer'>
+                                    Source code
+                                </a>
+
                             </p>
                         </div>
                     </Col>
