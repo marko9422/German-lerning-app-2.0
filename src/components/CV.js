@@ -39,13 +39,13 @@ export default function CV() {
 
     return (
         <>
-            {openGallery ? <div onClick={closePicture} className='div' style={{ backgroundImage: `url(${pictureInGallery})` }}>
+            {openGallery ? <div onClick={closePicture} className='div' style={{ backgroundImage: `url(${pictureInGallery})`,zIndex:'10' }}>
                 <p className='closetext'>Click to close.</p>
             </div> : null}
 
-            <Container className='cv'>
-                <Row style={{ textAlign: 'center' }}>
-                    <Col>
+            <Container >
+                <Row style={{ textAlign: 'center'}}>
+                    <Col >
                         <h2>MARKO ŠARČEVIČ</h2>
                     </Col>
                 </Row>
@@ -54,7 +54,8 @@ export default function CV() {
                         <h4>PROJECTS</h4>
                     </Col>
                 </Row>
-                <Row>
+                <div className='full_bleed-german' style={{ background: 'var(--background-color_germanAPP)'}}>
+                <Row >
                     <Col className='project_section' >
                         <h4 className='project_name' style={{ textAlign: 'center' }}>German learning web app</h4>
                         <div>
@@ -78,10 +79,9 @@ export default function CV() {
                                 </a>
                             </p>
                         </div>
-
                     </Col>
                 </Row>
-                <Row className='lavinoffka_gallery'>
+                <Row className='gallery_section' >
                     <Col lg="4">
                         <img className='lavinoffka_picture' src={germanapp1} alt="germanapp1" onClick={openPicture} />
                         <p>TinyMCE: WYSIWYG Editor</p>
@@ -94,6 +94,8 @@ export default function CV() {
                         <p>Firestore database</p>
                     </Col>
                 </Row>
+                </div>
+                <div className='full_bleed-lavinoffka' style={{ background: 'var(--background-color_lavinoffka)'}}>
                 <Row>
                     <Col className='project_section'>
                         <h4 className='project_name' style={{ textAlign: 'center' }}>www.lavinoffka.cz</h4>
@@ -105,7 +107,7 @@ export default function CV() {
                         </div>
                     </Col>
                 </Row>
-                <Row className='lavinoffka_gallery'>
+                <Row className='gallery_section'>
                     <Col lg="4">
                         <img className='lavinoffka_picture' src={lavinoffka1} onClick={openPicture} alt="lavinoffka1" />
                     </Col>
@@ -116,7 +118,9 @@ export default function CV() {
                         <img className='lavinoffka_picture' src={lavinoffka3} onClick={openPicture} alt="lavinoffka3" />
                     </Col>
                 </Row>
-                <Row>
+                </div>
+                <div className='full_bleed-jakubhanzl' style={{ background: 'var(--background-color_jakubhanzl)'}}>
+                <Row className='gallery_section'>
                     <Col xs={12} className='project_section'>
                         <h4 className='project_name' style={{ textAlign: 'center' }}>www.jakubhanzl.com</h4>
                         <div >
@@ -130,6 +134,8 @@ export default function CV() {
                         <img className='gif_video gif_video_zoom' src={videoGif} onClick={openPicture}></img>
                     </Col>
                 </Row>
+                </div>
+                <div className='full_bleed-api' style={{ background: 'var(--background-color_api)'}}>
                 <Row>
                     <Col className='project_section'>
                         <h4 className='project_name' style={{ textAlign: 'center' }}>API </h4>
@@ -142,6 +148,8 @@ export default function CV() {
                         </div>
                     </Col>
                 </Row>
+                </div>
+                <div className='full_bleed-python' style={{ background: 'var(--background-color_python)'}}>
                 <Row>
                     <Col className='project_section'>
                         <h4 className='project_name' style={{ textAlign: 'center' }}>Python / selenium </h4>
@@ -159,6 +167,7 @@ export default function CV() {
                         </div>
                     </Col>
                 </Row>
+                </div>
                 <Row>
                     <Col className='project_section'>
                         {/* <h4 style={{ textAlign: 'center' }}>Python / selenium </h4> */}

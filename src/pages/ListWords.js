@@ -8,10 +8,24 @@ import Button from 'react-bootstrap/Button';
 import useFetchCategories from '../hooks/useFetchCategories';
 import Form from 'react-bootstrap/Form';
 import useGetUserFromLocalStore from '../hooks/useGetUserFromLocalStore';
-
+import axios from 'axios';
 
 
 export default function ListWords() {
+
+  // DATABASE MIGRATION
+  useEffect(() => {
+    axios.get('http://localhost:8081/ListWords')
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err))
+  }, []);
+
+
+
+
+
+
+
 
   const [userFromLocalStorage, emailWhichIsAsAGuess] = useGetUserFromLocalStore()
   const [loading, words] = useFetchWords()

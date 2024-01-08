@@ -33,27 +33,48 @@ body{
     font-weight: bold;
   }
 
+:root {
+  --background-color_germanAPP: #28897f;
+  --background-color_lavinoffka: #16c185;
+  --background-color_jakubhanzl: #312da6;
+  --background-color_api: #897928;
+  --background-color_python: #953e29;
+}
+  
+  .full_bleed-german{
+    box-shadow: 0 0 0 100vmax var(--background-color_germanAPP);
+    clip-path: inset(0 -100vmax);
+  }
+  .full_bleed-lavinoffka{
+    box-shadow: 0 0 0 100vmax var(--background-color_lavinoffka);
+    clip-path: inset(0 -100vmax);
+  }
+  .full_bleed-jakubhanzl{
+    box-shadow: 0 0 0 100vmax var(--background-color_jakubhanzl);
+    clip-path: inset(0 -100vmax);
+  }
+  .full_bleed-api{
+    box-shadow: 0 0 0 100vmax var(--background-color_api);
+    clip-path: inset(0 -100vmax);
+  }
+  .full_bleed-python{
+    box-shadow: 0 0 0 100vmax var(--background-color_python);
+    clip-path: inset(0 -100vmax);
+  }
+
   .project_section{
     padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .gallery_section{
+    padding-bottom: 80px;
   }
 
-  .cv{
-    border: 1px solid black;
-    border-radius: 15px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    padding-top: 20px;
-    background-color: rgb(222, 222, 222);
-  }
-
-  .lavinoffka_galery{
-    text-align: center;
-  }
   .lavinoffka_picture{
     cursor: zoom-in;
     width: 100%;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 5px; 
+    margin-bottom: 5px; 
   }
   .project_name{
     color: #d31313;
