@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;800&display=swap');
 body{
   font-family: 'Open Sans', sans-serif;
+  background-color: #c7c7c7;
 }
 .unclicable {
     pointer-events: none;
@@ -34,11 +35,11 @@ body{
   }
 
 :root {
-  --background-color_germanAPP: #28897f;
-  --background-color_lavinoffka: #16c185;
-  --background-color_jakubhanzl: #312da6;
-  --background-color_api: #897928;
-  --background-color_python: #953e29;
+  --background-color_germanAPP: #7C93C3;
+  --background-color_lavinoffka: #9EB8D9;
+  --background-color_jakubhanzl: #EEF5FF;
+  --background-color_api: #A25772;
+  --background-color_python: #7C93C3;
 }
   
   .full_bleed-german{
@@ -77,7 +78,8 @@ body{
     margin-bottom: 5px; 
   }
   .project_name{
-    color: #d31313;
+    color: #211e1e;
+    font-size: 32px;
   }
   .gif_video_zoom{
     cursor: zoom-in;
