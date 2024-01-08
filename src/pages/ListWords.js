@@ -13,20 +13,6 @@ import axios from 'axios';
 
 export default function ListWords() {
 
-  // DATABASE MIGRATION
-  useEffect(() => {
-    axios.get('http://localhost:8081/ListWords')
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err))
-  }, []);
-
-
-
-
-
-
-
-
   const [userFromLocalStorage, emailWhichIsAsAGuess] = useGetUserFromLocalStore()
   const [loading, words] = useFetchWords()
   const [chooseListedLanguage, setChooseListedLanguage] = useState('english')
