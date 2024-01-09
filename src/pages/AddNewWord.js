@@ -8,7 +8,6 @@ import NavbarMenu from '../components/NavbarMenu';
 import useFetchCategories from '../hooks/useFetchCategories';
 import useGetUserFromLocalStore from '../hooks/useGetUserFromLocalStore';
 
-
 export default function AddNewWord() {
 
     const [userFromLocalStorage, emailWhichIsAsAGuess] = useGetUserFromLocalStore()

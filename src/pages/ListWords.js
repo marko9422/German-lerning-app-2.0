@@ -10,7 +10,6 @@ import Form from 'react-bootstrap/Form';
 import useGetUserFromLocalStore from '../hooks/useGetUserFromLocalStore';
 
 
-
 export default function ListWords() {
 
   const [userFromLocalStorage, emailWhichIsAsAGuess] = useGetUserFromLocalStore()
