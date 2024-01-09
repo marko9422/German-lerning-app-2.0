@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col,Button  } from 'react-bootstrap';
 import './styles.css'
 import videoGif from '../images/video.gif'
 import lavinoffka1 from '../images/lavinoffka1.png'
@@ -8,6 +8,7 @@ import lavinoffka3 from '../images/lavinoffka3.png'
 import germanapp1 from '../images/germanapp1.png'
 import germanapp2 from '../images/germanapp2.png'
 import germanapp3 from '../images/germanapp3.png'
+import cv from '../images/Marko_Sarcevic_CV.pdf'
 import ApiComponent from './ApiComponent';
 
 export default function CV() {
@@ -44,14 +45,15 @@ export default function CV() {
             </div> : null}
 
             <Container >
-                <Row className="d-flex align-items-center" style={{ textAlign: 'center', height:'82vh'}}>
+                <Row className="d-flex align-items-center" style={{ textAlign: 'center', height: '80vh' }}>
                     <Col >
-                        <h2 style={{ marginTop: '-150px'}} >MARKO ŠARČEVIČ</h2>
+                        <h2 style={{ marginTop: '-150px' }} >MARKO ŠARČEVIČ</h2>
+                        <Button style={{ margin: '10px' }}  variant="success" href={cv} download="Marko_Sarcevic_CV.pdf">Download CV</Button>
                         <div >
                             <p>
-                            "My main interest currently lies in ReactJS, and I am also passionate about WordPress and 
-                            e-commerce. I am currently in the process of migrating my database from Firestore to MySQL 
-                            using Node.js/Express. In the future, I aim to acquire knowledge in React Native and TypeScript."
+                                "My main interest currently lies in ReactJS, and I am also passionate about WordPress and
+                                e-commerce. I am currently in the process of migrating my database from Firestore to MySQL
+                                using Node.js/Express. In the future, I aim to acquire knowledge in React Native and TypeScript."
                             </p>
                         </div>
                     </Col>
@@ -73,7 +75,7 @@ export default function CV() {
                                 <p>
                                     Created second version of German web aplication frontend in <span className='technology_word'>ReactJS</span>. Intead of
                                     mySQL I am using <span className='technology_word'>firestore</span> from google as a database for data and authentication
-                                    system to register/login.Style is created mostly with <span className='technology_word'>Bootstrap</span> but in not 100% finished because I am adding more features and I am planing migrate database from firebase to mySQL using laravel.
+                                    system to register/login.Style is created mostly with <span className='technology_word'>Bootstrap</span> but in not 100% finished because I am adding more features and I am planing migrate database from firebase to mySQL using node.js/express.
                                 </p>
                                 <p>
                                     <a href='https://github.com/marko9422/German-lerning-app-2.0' target='_blank' rel='noopener noreferrer'>

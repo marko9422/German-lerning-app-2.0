@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { db } from '../firebase/config'
 import { collection, addDoc } from 'firebase/firestore';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,8 +7,6 @@ import Form from 'react-bootstrap/Form';
 import NavbarMenu from '../components/NavbarMenu';
 import useFetchCategories from '../hooks/useFetchCategories';
 import useGetUserFromLocalStore from '../hooks/useGetUserFromLocalStore';
-import axios from 'axios'
-
 
 export default function AddNewWord() {
 

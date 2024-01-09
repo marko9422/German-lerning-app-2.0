@@ -8,7 +8,6 @@ import Button from 'react-bootstrap/Button';
 import useFetchCategories from '../hooks/useFetchCategories';
 import Form from 'react-bootstrap/Form';
 import useGetUserFromLocalStore from '../hooks/useGetUserFromLocalStore';
-import axios from 'axios';
 
 
 export default function ListWords() {
