@@ -13,28 +13,20 @@ export default function Textarea({ initialValue }) {
     const [textarea, setTextarea] = useState(initialValue ?? '');
     const [loadingAfterPost, setLoadingAfterPost] = useState(true)
 
-    // const saveIntoFirestore = async () => {
-    //     if (userFromLocalStorage.email !== emailWhichIsAsAGuess){
-    //         setLoadingAfterPost(false)
-    //         await addDoc(userCollectionRef, { answer: textarea, score:10000,visible:true });
-    //         setTextarea('')
-    //         setLoadingAfterPost(true)
-    //     } else {
-    //         alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
-    //     }
-    // }
-
-
     const saveIntoFirestore = (e) => {
-        e.preventDefault()
-        axios.post('http://localhost:8081/Textarea', {
-            answer: textarea,
-            score: 10000,
-            visible: true
-        })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-        setTextarea('')
+        if (userFromLocalStorage.email !== emailWhichIsAsAGuess) {
+            e.preventDefault()
+            axios.post('http://localhost:8081/Textarea', {
+                answer: textarea,
+                score: 10000,
+                visible: 1
+            })
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
+            setTextarea('')
+        } else {
+            alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
+        }
     }
 
 

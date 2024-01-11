@@ -1,28 +1,34 @@
 import { useEffect, useState } from 'react';
-import { db } from '../firebase/config'
-import { collection, onSnapshot } from 'firebase/firestore';
+import axios from 'axios';
 
 function useFetchGrammar() {
 
-    const [loading,setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
     const [grammar, setGrammar] = useState([])
 
-
-    const userCollectionRef = collection(db, 'textarea')
+    const fetchGrammar = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.get('http://localhost:8081/getGrammar');
+            console.log(response);
+            setGrammar(response.data);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchGrammarFromFirestore = onSnapshot(userCollectionRef, (snapshot) => {
-            setGrammar(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-            setLoading(false);
-        });
+        const fetchData = async () => {
+            await fetchGrammar();
+            // Here, you can perform additional actions after fetching data, if needed
+        };
 
-    
-        // The returned function will be called when the component unmounts
-        return () => fetchGrammarFromFirestore();
-    }, []);
+        fetchData();
+    }, []); // Empty dependency array to run only once during mount
 
-
-    return (  [loading , grammar]);
+    return [loading, grammar, fetchGrammar];
 }
 
 export default useFetchGrammar;

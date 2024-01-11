@@ -11,7 +11,7 @@ import useGetUserFromLocalStore from '../hooks/useGetUserFromLocalStore';
 export default function ListGrammar() {
 
     const [userFromLocalStorage, emailWhichIsAsAGuess] = useGetUserFromLocalStore()
-    const [loading, grammar] = useFetchGrammar()
+    const [loading, grammar, fetchGrammar] = useFetchGrammar()
     const [edit, setEdit] = useState('')
     const [openEditorToEditCurrentGrammar, setEditorToeditCurrentGrammar] = useState(false)
 
@@ -24,15 +24,16 @@ export default function ListGrammar() {
         setRandomlengthOfGrammar(randomNext )
         setCurrentlyEditing(randomNext )
     }
+    
 
     const editGrammar = (id) => {
-        if (userFromLocalStorage.email !== emailWhichIsAsAGuess){
+        // if (userFromLocalStorage.email !== emailWhichIsAsAGuess){
             setEdit(id)
             setEditorToeditCurrentGrammar(true)
             setCurrentlyEditing(randomlengthOfGrammar)
-        } else {
-            alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
-        }
+        // } else {
+        //     alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
+        // }
     }
     // This function is helping to sent false from EditGrammar in this parent component.
     const callback = (value) => {
@@ -46,6 +47,12 @@ export default function ListGrammar() {
             setRandomlengthOfGrammar(Math.floor(Math.random() * grammar.length))
         }   
     }, [grammar])
+
+    // This useEffect with fetchGrammar() will get new data from mySQL. Because openEditorToEditCurrentGrammar is after update false execute useEfect and fetch data from SQL and save them into grammar. Also execute loading const from custom hook useFetchGrammar.
+    useEffect(() => {
+        fetchGrammar()
+    }, [openEditorToEditCurrentGrammar])
+
 
     return (
         <>
