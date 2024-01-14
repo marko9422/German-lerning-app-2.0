@@ -1,8 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-import { db } from '../firebase/config'
-import { collection, updateDoc, doc } from 'firebase/firestore';
 import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 
 
 export default function EditGrammar(props) {
@@ -10,11 +9,15 @@ export default function EditGrammar(props) {
     const [textarea, setTextarea] = useState(props.initialValue ?? '');
     const [loadingAfterPost, setLoadingAfterPost] = useState(true)
 
-    const EditIntoFirestore = async (id, textarea) => {
+    const editTextarea = (e, id, textareaa) => {
+        e.preventDefault()
         setLoadingAfterPost(false)
-        const textareaDoc = doc(db, 'textarea', id)
-        const updateTextarea = { answer: textarea }
-        await updateDoc(textareaDoc, updateTextarea);
+        axios.post('http://localhost:8081/edit-textarea', {
+            answer: textareaa,
+            id: id
+        })
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
         setTextarea('')
         props?.callback(false)
         setLoadingAfterPost(true)
@@ -22,7 +25,6 @@ export default function EditGrammar(props) {
 
 
     // tinyMCE Editor things.
-    // const userCollectionRef = collection(db, 'textarea')
     useEffect(() => setTextarea(props.initialValue ?? ''), [props.initialValue]);
     const editorRef = useRef(null);
 
@@ -50,7 +52,7 @@ export default function EditGrammar(props) {
                             content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:12pt; }',
                         }}
                     />
-                    <Button variant="warning" onClick={() => EditIntoFirestore(props.id, textarea)}>update</Button>
+                    <Button variant="warning" onClick={(e) => editTextarea(e, props.id, textarea)}>update</Button>
                 </>
                 :
                 <div>loading...</div>

@@ -13,11 +13,11 @@ import useGetUserFromLocalStore from '../hooks/useGetUserFromLocalStore';
 export default function ListWords() {
 
   const [userFromLocalStorage, emailWhichIsAsAGuess] = useGetUserFromLocalStore()
-  const [loading, words] = useFetchWords()
+  const [loading, words, fetchWords] = useFetchWords()
   const [chooseListedLanguage, setChooseListedLanguage] = useState('english')
   const [editingThisWords, setEditingThisWords] = useState(false)
   const [randomlengthOfWord, setRandomlengthOfWord] = useState(null)
-  const [loadingCategories, category] = useFetchCategories()
+  const [loadingCategories, category, fetchCategories] = useFetchCategories()
 
   const [listedCategory, setListedCategory] = useState('all')
   const [wordsFilteredByCategory, setWordsFilteredByCategory] = useState(words)
@@ -32,28 +32,42 @@ export default function ListWords() {
       setWordsFilteredByCategory(words.filter(word => word.category === selectedCategory));
     }
   };
-// On load page wait till loading is from false true and execute useEffect and set words WordsFilteredByCategory. Load random number from all words to avoid return first word from database.
+  // On load page wait till loading is from false true and execute useEffect and set words WordsFilteredByCategory. Load random number from all words to avoid return first word from database.
   useEffect(() => {
     setWordsFilteredByCategory(words)
     setRandomlengthOfWord(Math.floor(Math.random() * words.length))
   }, [loading])
 
-// On chage category, change wordsFilteredByCategory and execute useEffect, after that generate RandomlengthOfWord from wordsFilteredByCategory.
+  // On chage category, change wordsFilteredByCategory and execute useEffect, after that generate RandomlengthOfWord from wordsFilteredByCategory.
   useEffect(() => {
     setRandomlengthOfWord(Math.floor(Math.random() * wordsFilteredByCategory.length))
-  },[wordsFilteredByCategory])
+  }, [wordsFilteredByCategory])
 
 
   const nextWorld = () => {
     setRandomlengthOfWord(Math.floor(Math.random() * wordsFilteredByCategory.length))
   }
 
-  const callback = (value) => {
+  const callback = (value,id,englishShortText,germanShortText,englishExample,germanExample) => {
     setEditingThisWords(value)
+    const updatedWord = words.find(word => word.id === id);
+    if (updatedWord) {
+      // console.log('Found word:', updatedWord);
+  
+      // Now you can update the properties of the found word
+      updatedWord.english = englishShortText;
+      updatedWord.german = germanShortText;
+      updatedWord.englishExample = englishExample || 'empty';
+      updatedWord.germanExample = germanExample || 'leer';
+  
+      // console.log('Updated word:', updatedWord);
+  } else {
+      // console.log('Word with id', id, 'not found');
+  }
   }
 
   const editWords = (id) => {
-    if (userFromLocalStorage.email !== emailWhichIsAsAGuess){
+    if (userFromLocalStorage.email !== emailWhichIsAsAGuess) {
       setEditingThisWords(true)
     } else {
       alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
@@ -90,10 +104,10 @@ export default function ListWords() {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          // Loaded words from firebase...
+          // Loaded words from sql...
           wordsFilteredByCategory.map(({ id, english, german, englishScore, germanScore, englishExample, germanExample, category }, index) => (
             <div key={id}>
-              
+
               {editingThisWords === false && index === randomlengthOfWord && (
                 <>
                   {chooseListedLanguage === 'german' ? (
@@ -115,7 +129,7 @@ export default function ListWords() {
               )}
             </div>
           ))
-          )}
+        )}
       </div>
     </>
   );

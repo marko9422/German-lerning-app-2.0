@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { db } from '../firebase/config'
-import { collection, onSnapshot } from 'firebase/firestore';
+import axios from 'axios';
 
 function useFetchCategories() {
 
@@ -8,20 +7,28 @@ function useFetchCategories() {
     const [category, setCategory] = useState([])
 
 
-    const userCollectionRef = collection(db, 'categories_of_words')
+    const fetchCategories = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.get('http://localhost:8081/categories');
+            // console.log(response);
+            setCategory(response.data);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchcategoryFromFirestore = onSnapshot(userCollectionRef, (snapshot) => {
-            setCategory(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-            setLoading(false);
-        });
-    
-        // The returned function will be called when the component unmounts
-        return () => fetchcategoryFromFirestore();
-    }, []);
+        const fetchData = async () => {
+            await fetchCategories();
+        };
 
+        fetchData();
+    }, []); // Empty dependency array to run only once during mount
 
-    return (  [loadingCategories , category]);
+    return [loadingCategories, category, fetchCategories];
 }
 
 export default useFetchCategories;
