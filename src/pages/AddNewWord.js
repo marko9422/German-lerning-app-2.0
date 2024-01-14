@@ -1,46 +1,55 @@
-import { useState } from 'react';
-import { db } from '../firebase/config'
-import { collection, addDoc } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import NavbarMenu from '../components/NavbarMenu';
 import useFetchCategories from '../hooks/useFetchCategories';
 import useGetUserFromLocalStore from '../hooks/useGetUserFromLocalStore';
+import axios from 'axios';
 
 export default function AddNewWord() {
 
     const [userFromLocalStorage, emailWhichIsAsAGuess] = useGetUserFromLocalStore()
-    const [loadingCategories, category] = useFetchCategories()
+    const [loadingCategories, category, fetchCategories] = useFetchCategories()
     const [inputs, setInputs] = useState({});
     const [newCategory, setNewCategory] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('test')
 
-
-    const userCollectionRef = collection(db, 'words')
-    const saveIntoFirestore = async () => {
+    const saveWordIntoSQL = (e) => {
         if (userFromLocalStorage.email !== emailWhichIsAsAGuess) {
-            await addDoc(userCollectionRef, {
-                english: inputs.englishShortText,
+            e.preventDefault()
+            axios.post('http://localhost:8081/save-newWord', {
                 german: inputs.germanShortText,
+                english: inputs.englishShortText,
+                english_score: 10000,
+                german_score: 10000,
+                category: selectedCategory,
+                visible: 1,
                 englishExample: inputs.englishExample || 'empty',
                 germanExample: inputs.germanExample || 'leer',
-                englishScore: 10000,
-                germanScore: 10000,
-                visible: true,
-                category: selectedCategory
-            });
+            })
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
         } else {
             alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
         }
-    } 
+    }
 
-
-    const categories_of_wordsCollectionRef = collection(db, 'categories_of_words')
-    const saveCategoryIntoFirestore = async () => {
-        await addDoc(categories_of_wordsCollectionRef, {
-            category: newCategory,
-        });
+    const saveCategoryIntoSQL = (e) => {
+        if (userFromLocalStorage.email !== emailWhichIsAsAGuess) {
+            e.preventDefault()
+            axios.post('http://localhost:8081/save-cetegory', {
+                category: newCategory
+            })
+                .then(res => {
+                    // console.log(res)
+                    // After post new category into SQL fetchCategories from SQL.
+                    fetchCategories()
+                })
+                .catch(err => console.log(err))
+        } else {
+            alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
+        }
     }
 
     const handleRadioChange = (event) => {
@@ -60,24 +69,26 @@ export default function AddNewWord() {
             alert('Please fill ENGLISH and GERMAN fields.');
             return;
         } else {
-            saveIntoFirestore()
+            saveWordIntoSQL(e)
             setInputs({})
         }
     }
 
-    const handleNewCategory = (e) => {
+    const handleNewCategory = async (e) => {
         e.preventDefault();
         if (userFromLocalStorage.email !== emailWhichIsAsAGuess) {
-            console.log(newCategory)
-            saveCategoryIntoFirestore()
+            if (!newCategory) {
+                alert('Please fill category');
+                return;
+            }
+            await saveCategoryIntoSQL(e);
             setNewCategory('')
         } else {
             alert('Sorry, you do not have permission to save/edit data. You are currently in guest mode.');
             setNewCategory('')
         }
+
     }
-
-
 
     return (
         <>
@@ -155,7 +166,7 @@ export default function AddNewWord() {
                             autoComplete="off" />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit">Submit</Button>
+                    <Button variant="primary" type="submit">Add category</Button>
 
                 </Form>
 

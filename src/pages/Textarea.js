@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-import { db } from '../firebase/config'
-import { collection, addDoc } from 'firebase/firestore';
 import NavbarMenu from '../components/NavbarMenu';
 import Button from 'react-bootstrap/Button';
 import useGetUserFromLocalStore from '../hooks/useGetUserFromLocalStore';
@@ -13,7 +11,7 @@ export default function Textarea({ initialValue }) {
     const [textarea, setTextarea] = useState(initialValue ?? '');
     const [loadingAfterPost, setLoadingAfterPost] = useState(true)
 
-    const saveIntoFirestore = (e) => {
+    const saveDataIntoSQL = (e) => {
         if (userFromLocalStorage.email !== emailWhichIsAsAGuess) {
             e.preventDefault()
             axios.post('http://localhost:8081/Textarea', {
@@ -32,7 +30,6 @@ export default function Textarea({ initialValue }) {
 
     // tinyMCE Editor things.
     useEffect(() => setTextarea(initialValue ?? ''), [initialValue]);
-    // const userCollectionRef = collection(db, 'textarea')
     const editorRef = useRef(null);
 
     return (
@@ -61,7 +58,7 @@ export default function Textarea({ initialValue }) {
                                 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:12pt; }',
                             }}
                         />
-                        <Button variant="primary" onClick={saveIntoFirestore}>save</Button>
+                        <Button variant="primary" onClick={saveDataIntoSQL}>save</Button>
                     </>
                     :
                     <div>loading...</div>

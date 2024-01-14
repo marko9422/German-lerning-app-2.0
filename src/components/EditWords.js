@@ -1,9 +1,8 @@
-import { useRef, useState } from 'react';
-import { db } from '../firebase/config'
-import { doc, collection, updateDoc } from 'firebase/firestore';
+import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import axios from 'axios';
 
 export default function AddNewWord(props) {
 
@@ -14,18 +13,19 @@ export default function AddNewWord(props) {
         germanExample: props.germanExample || '',
     });
 
-    // const userCollectionRef = collection(db, 'words')
-    // const editorRef = useRef(null);
-
-    const editWordsInsideDatabase = async () => {
-        const textareaDoc = doc(db, 'words', props.id)
-        const updateTextarea = {
+    const editWordsInsideDatabase = async (e) => {
+        e.preventDefault()
+        axios.post('http://localhost:8081/edit-word', {
+            id: props.id,
             english: inputs.englishShortText,
             german: inputs.germanShortText,
             englishExample: inputs.englishExample,
-            germanExample: inputs.germanExample,
-        }
-        await updateDoc(textareaDoc, updateTextarea);
+            germanExample: inputs.germanExample
+        })
+            .then(res => {
+                // console.log(res)
+            })
+            .catch(err => console.log(err))
     }
 
     const handleChange = (e) => {
@@ -41,9 +41,9 @@ export default function AddNewWord(props) {
             alert('Please fill in the text.');
             return;
         } else {
-            editWordsInsideDatabase()
+            editWordsInsideDatabase(e)
             setInputs({})
-            props?.callback(false)
+            props?.callback(false,props.id,inputs.englishShortText,inputs.germanShortText,inputs.englishExample,inputs.germanExample)
         }
 
     }
